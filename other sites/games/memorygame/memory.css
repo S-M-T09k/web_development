@@ -1,0 +1,10 @@
+#grid {
+    width: 400px;
+    height: 300px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#grid ::img {
+    margin-left: 2px;
+}

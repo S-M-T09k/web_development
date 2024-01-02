@@ -1,0 +1,62 @@
+body{
+    background-color: black;
+    color: whitesmoke;
+}
+
+.container{
+    text-align: center;
+}
+
+#diceRoller{
+    font-family: Arial, sans-serif;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+}
+.diceRollerBtn{
+    font-size: 1.5rem;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: none;
+    background-color: hsl(210, 100%, 31%);
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+}
+.diceRollerBtn:hover{
+    background-color: hsl(210, 92%, 44%);
+}
+.diceRollerBtn:active{
+    background-color: hsl(210, 100%, 69%);
+}
+#numberOfDice{
+    font-size: 2rem;
+    width: 150px;
+    text-align: center;
+    font-weight: bold;
+}
+#diceResults{
+    margin: 25px;
+}
+#diceDisplay img{
+    width: 150px;
+    margin: 5px;
+}
+#notice{
+    font-size: xx-small;
+    font-family: 'Courier New';
+}
+
+#events{
+    width: 100px;
+    height: 100px;
+    display: flex;
+    background-color: #0088ff;
+    border: 1px solid #00ff00;
+    align-items: center;
+}
+
+#day-11_events{
+    display: flex;
+    justify-content: center;
+}

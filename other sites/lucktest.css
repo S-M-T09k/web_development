@@ -1,0 +1,22 @@
+#luck{
+    text-align: center;
+    font-size: 45px;
+}
+#btn{
+    text-align: center;
+}
+#test{
+    background-color: black;
+    color: rgb(51, 201, 51);
+    font-size: 20px;
+}
+#result{
+    font-size: x-large;
+}
+#numberGame{
+    text-align: center;
+    font-size: 20px;
+}
+#output{
+    color: aquamarine;
+}

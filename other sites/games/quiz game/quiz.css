@@ -1,0 +1,59 @@
+body {
+  background-color: #111;
+  color: #eee;
+  text-align: center;
+  font-size: larger;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+nav{
+  text-align: left;
+  font-size: small;
+}
+
+#notice{
+  text-align: left;
+  font-size: medium;
+  padding-right: 5px;
+}
+
+#quizzes {
+  display: grid; 
+  grid-template-columns: 1fr; 
+  grid-template-rows: repeat(auto-fit, minmax(100px, auto)); 
+  justify-items: center; 
+  align-items: center; 
+
+}
+
+.gameArea {
+  border: solid blueviolet 2px;
+  height: max-content;
+  width: 650px;
+  border-radius: 8px;
+  margin-bottom: 25px;
+  padding-bottom: 5px;
+  padding-left: 7px;
+  padding-right: 7px;
+}
+
+.navButton{
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.button {
+  cursor: pointer;
+  font-size: medium;
+}
+
+.scoreContainer {
+  padding-right: 10px;
+  text-align: end;
+}
+
+.choices{
+  margin-left: -2px;
+  margin-right: 5px;
+  cursor: pointer;
+}

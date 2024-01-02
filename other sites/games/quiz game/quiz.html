@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>quiz app</title>
+  <link rel="shortcut icon" href="images/quiz icon.jpg" type="image/x-icon">
+
+  <link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+  <nav>//flip your phone (if you're on one) for better experience</nav>
+
+  <p id="notice">
+    You have 5 chances for each question. After 5 incorrect answers or one correct answer, the correct answer will be shown. On the first question, the answer is not case sensitive. The second one is multipleChoice so just choose one. The question will become unable to answer after 5 incorrect answers or a correct answer. Refresh the page to reset everything.
+  </p>
+  <h2>Some fun quizzes</h2>
+  <br>
+
+  <div class="container" id="quizzes">
+    <div class="container gameArea" id="shortAnswer">
+      <h3>Short Answer Questions</h3>
+
+      <p id="shortQuestion">
+        A question that can be answered with one word or phrase.
+      </p>
+
+      <label for="userAnswer_short">Answer here:</label>
+      <input type="text" name="answer" id="userAnswer_short">
+
+      <span id="correctionCheck_shortQuestion"></span>
+      <br>
+      <span id="correctShortAnswer"></span>
+      <br><br>
+
+      <input type="button" value="submit answer" id="submitShortAnswer" class="button">
+      <br><br>
+
+      <div class="container navButtons" id="shortAnswerNav">
+        <input type="button" class="navButton button nbs" id="goBack_shortAnswer" value="<---------">
+        <input type="button" class="navButton button nbs" id="random_shortAnswer" value="random question">
+        <input type="button" class="navButton button nbs" id="goNext_shortAnswer" value="--------->">
+      </div>
+      <br>
+
+      <div class="scoreContainer">
+        score: <span id="scoreDisplay_shortAnswer"></span>
+      </div>
+    </div>
+
+    <div class="gameArea" id="multipleChoice">
+      <h3>Multiple Choice Questions</h3>
+
+      <p id="multipleChoiceQuestion">
+        A question with answers already provided.
+      </p>
+
+      <label for="choice1">1. 
+        <span id="answer1" class="choiceDisplays"></span>
+      </label>
+      <input type="radio" id="choice1" class="choices" name="choices">
+
+      <label for="choice2">2. 
+        <span id="answer2" class="choiceDisplays"></span>
+      </label>
+      <input type="radio" id="choice2" class="choices" name="choices">
+
+      <label for="choice3">3. 
+        <span id="answer3" class="choiceDisplays"></span>
+      </label>
+      <input type="radio" id="choice3" class="choices" name="choices">
+
+      <label for="choice4">4. 
+        <span id="answer4" class="choiceDisplays"></span>
+      </label>
+      <input type="radio" id="choice4" class="choices" name="choices">
+
+      <label for="choice5">5. 
+        <span id="answer5" class="choiceDisplays"></span>
+      </label>
+      <input type="radio" id="choice5" class="choices" name="choices">
+      <br>
+
+      <span id="correctionCheck_multipleChoice"></span>
+      <span id="correctMultipleChoice"></span>
+      <br><br>
+
+      <input type="button" value="submit answer" class="button" id="submitMultipleChoiceAnswer">
+      <br><br>
+
+      <div class="container navButtons" id="multipleChoiceNav">
+        <input type="button" class="navButton button nbm" id="goBack_multipleChoice" value="<---------">
+        <input type="button" class="navButton button nbm" id="random_multipleChoice" value="random question">
+        <input type="button" class="navButton button nbm" id="goNext_multipleChoice" value="--------->">
+      </div>
+      <br>
+
+      <div class="scoreContainer">
+        score: <span id="scoreDisplay_multipleChoice"></span>
+      </div>
+    </div>
+  </div>
+
+  <br><br><br><br><br>
+  <q>
+    Nobody's thinking about that really embarrassing thing you did that keeps you up at night.
+    <br>
+    Everyone's too busy thinking about that really embarrassing thing they did that keeps them up at night.
+  </q>
+  <br>
+  <h4>Thanks for playing</h4>
+
+
+
+  <script type="module" src="quiz.js"></script>
+</body>
+</html>

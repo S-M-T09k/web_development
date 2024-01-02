@@ -1,0 +1,1 @@
+function runDay7() { let countingLength = window.prompt("please type in an amount"); countingLength = Number(countingLength); console.log(countingLength); let count = 0; function increment() { count++; console.log(count); if (count >= countingLength) { clearInterval(counter); }; }; const counter = setInterval(increment, 1000); console.log("counter", counter); };

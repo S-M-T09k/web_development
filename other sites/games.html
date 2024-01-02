@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>games</title>
+    <link rel="stylesheet" href="lucktest.css">
+</head>
+
+<body style="background-color: #444444; color: aliceblue;">
+
+    <h1 id="luck">luck test</h1>
+
+    <p id="btn">
+        <button type="button" id="test">test your luck</button>
+        <br>
+        <br>
+        <label for="luck" id="result">you are:</label>
+    </p>
+
+    <br>
+
+    <h2 style="text-align: center;">Number guessing game</h2>
+
+    <div id="numberGame">
+        <label>a number between <b id="min">0</b> and <b id="max">100</b></label>
+        <br>
+        <label for="guess">guess:</label>
+        <input type="number" id="guess" max="100" min="0">
+        <input type="submit" id="submitGuess">
+        <button type="button" id="new">new</button>
+        <button type="button" id="reset">reset</button>
+        <br>
+        <label id="output"></label>
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+    <div id="kiss, marry, kill" style="text-align: center; font-size: larger;">
+        <h3>Kiss, Marry, Kill</h3>
+        not working currently
+        <label for="kiss">kiss</label>
+        <input type="text" id="kiss" size="10">
+        <label for="marry">marry</label>
+        <input type="text" id="marry" size="10">
+        <label for="kill">kill</label>
+        <input type="text" id="kill" size="10">
+        <button id="done">done</button>
+        <p id="kiss area">
+            People kissed:
+        </p>
+        <p id="marry area">
+            People married:
+        </p>
+        <p id="kill area">
+            People killed:
+        </p>
+    </div>
+
+    <br><br>
+
+    <div id="rock, paper, scissors, lizard, spock" style="text-align: center; font-size: larger;">
+        <h2>Rock Paper Scissors Lizard Spock</h2>
+        <label for="userChoiceDisplay">Your choice: <span id="userChoiceDisplay"></span></label>
+        <br>
+        <label for="computerChoiceDisplay">Computer choice: <span id="computerChoiceDisplay"></span></label>
+        <br>
+        <label for="resultDisplay">result: <span id="resultDisplay"></span></label>
+        <br>
+        <label for="explanation">explanation: <span id="explanationDisplay"></span></label>
+        <br><br>
+        <button id="rock" class="RPSLS">rock</button>
+        <button id="paper" class="RPSLS">paper</button>
+        <button id="scissors" class="RPSLS">scissors</button>
+        <button id="lizard" class="RPSLS">lizard</button>
+        <button id="spock" class="RPSLS">spock</button>
+        <br> <br> <a
+            href="https://adams.osu.edu/sites/adams/files/imce/4-H/STEM_Camp/Rock%20Paper%20Scissors%20Lizard%20Spock.pdf"
+            target="_blank" style="color: aqua;">full explanation of the game</a>
+    </div>
+
+    <div class="moreGames">
+        <h2>moreGames</h2>
+        <h4><a href="games/memorygame/memory.html">Memory Game</a></h4>
+    </div>
+
+
+    <br><br><br>
+    <h3>thanks for coming</h3>
+    <script src="games.js"></script>
+</body>
+
+</html>

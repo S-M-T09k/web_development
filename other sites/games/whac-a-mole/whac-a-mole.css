@@ -1,0 +1,29 @@
+body{
+  text-align: center;
+  background-color: #444444;
+  color: antiquewhite;
+}
+
+.container{
+  display: flex;
+  justify-content: center;
+}
+
+.grid{
+  display: flex;
+  width: 456px;
+  height: 456px;
+  flex-wrap: wrap;
+}
+
+.square{
+  width: 150px;
+  height: 150px;
+  border: solid aquamarine 1px;
+  overflow: hidden;
+}
+
+.mole{
+  background-image: url("images/050.png");
+  background-size: contain;
+}

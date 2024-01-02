@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    One lesson per day
+  </title>
+  <link rel="stylesheet" href="JS lessons.css">
+</head>
+
+<body>
+  <p>
+    Hello, don't mind me, I'm nothing here, just chillin.
+  </p>
+  <br><br><br>
+
+  <div class="container" id="clock">
+
+  </div>
+  <br><br><br>
+
+  <div class="container" id="stringManagement">
+    <h2>
+      Say Hi
+    </h2>
+
+    <label for="userName">
+      input user name:
+    </label>
+    <input type="text" name="name" id="userName">
+    <input type="button" value="submit" id="submitBtn">
+    <br>
+
+    <h3 id="nameDisplay"></h3>
+  </div>
+
+  <br><br><br>
+
+  <div class="container" id="diceRoller">
+    <h1>
+      Dice Roller
+    </h1>
+    <label for="numberOfDice">
+      How many dice would you like to roll?
+    </label>
+    <input type="text" name="diceAmountInput" id="numberOfDice" maxlength="3" class="onlyNumbers">
+
+    <input type="button" value="roll" id="roll" onclick="rollDice()" class="diceRollerBtn">
+    <input type="button" value="reset" id="reset" onclick="reset()" class="diceRollerBtn">
+
+    <div id="diceResultsDisplay">
+
+    </div>
+    <div class="container" id="diceDisplay">
+
+    </div>
+    <br>
+    <span id="notice">
+      odds of 1s and 6s may be increased by a bit but it's not a problem
+    </span>
+  </div>
+
+  <br><br><br>
+
+  <div class="container" id="passwordGenerater">
+    <h1>
+      random password generater
+    </h1>
+
+    <label for="passwordLength">
+      input password length:
+    </label>
+    <input type="text" name="passwordLength" id="passwordLength" class="onlyNumbers" maxlength="2">
+    <br>
+
+    <label for="includeLowerCase">
+      would you like to include lower cases:
+    </label>
+    <input type="checkbox" name="lowerCase" id="includeLowerCase">
+    <br>
+
+    <label for="includeUpperCase">
+      would you like to include upper cases:
+    </label>
+    <input type="checkbox" name="upperCase" id="includeUpperCase">
+    <br>
+
+    <label for="includeNumbers">
+      would you like to include numbers:
+    </label>
+    <input type="checkbox" name="Numbers" id="includeNumbers">
+    <br>
+
+    <label for="includeSymbols">
+      would you like to include Symbols:
+    </label>
+    <input type="checkbox" name="Symbols" id="includeSymbols">
+    <br>
+
+    <input type="button" value="Generate password" id="generatePassowrd" onclick="generatePassword()">
+    <br>
+
+    <h3>
+      generated password: <span id="passwordDisplay"></span>
+    </h3>
+  </div>
+
+  <div class="container" id="day-7">
+    <input type="button" value="run day-7" onclick="runDay7()">
+  </div>
+
+  <br><br><br>
+
+  <div class="container" id="day-11_events">
+    <div id="events">
+
+    </div>
+  </div>
+
+  <script src="day-1 objects.js"></script>
+  <script src="day-2 static+.js"></script>
+  <script src="day-3 stringManagement.js"></script>
+  <script src="day-4 dice roller.js"></script>
+  <script src="day-5 password generater.js"></script>
+  <script src="day-6 was memory.js"></script>
+  <script src="day-7 setTime.js"></script>
+  <script src="day-8 clock.js"></script>
+  <script type="module" src="day-9 modules.js"></script>
+  <script src="day-10.js"></script>
+  <script type="module" src="day-11 events.js"></script>
+
+  <script src="test.js"></script>
+</body>
+
+</html>
