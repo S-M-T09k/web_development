@@ -57,3 +57,8 @@ nav{
   margin-right: 5px;
   cursor: pointer;
 }
+
+/* #choiceArea{
+  display: flex;
+  flex-wrap: nowrap;
+} */

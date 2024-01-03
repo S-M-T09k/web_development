@@ -77,6 +77,7 @@ const submit_multipleChoice = document.querySelector('#submitMultipleChoiceAnswe
 const goBack_multipleChoice = document.querySelector('#goBack_multipleChoice');
 const goNext_multipleChoice = document.querySelector('#goNext_multipleChoice');
 const random_multipleChoice = document.querySelector('#random_multipleChoice');
+const allNav_multipleChoice = document.querySelectorAll('.nbm');
 const scoreDisplay_multipleChoice = document.querySelector('#scoreDisplay_multipleChoice');
 
 
@@ -91,21 +92,28 @@ function toSimpleString(string) {
   return string;
 };
 
-function previousQuestion(questions, questionDisplay, index) {
+function previousQuestion(questions, questionDisplay, index, isMultipleChoiceQuestion) {
 
   if (index == 0) {
     index = questions.length -1;
   }
   else {
     index--;
-  }
+  };
 
   questionDisplay.innerText = (index+1) +". "+ questions[index].question;
+
+  if (isMultipleChoiceQuestion == true) {
+
+    choiceDisplays_multipleChoice.forEach((element, i) => {
+      element.textContent = multipleChoiceQuestions[questionIndex_multipleChoice].choices[i];
+    });
+  }
 
   return index;
 };
 
-function nextQuestion(questions, questionDisplay, index) {
+function nextQuestion(questions, questionDisplay, index, isMultipleChoiceQuestion) {
 
   if (index == questions.length -1) {
     index = 0;
@@ -116,22 +124,39 @@ function nextQuestion(questions, questionDisplay, index) {
 
   questionDisplay.innerText = (index+1) +". "+ questions[index].question;
 
+  if (isMultipleChoiceQuestion == true) {
+
+    choiceDisplays_multipleChoice.forEach((element, i) => {
+      element.textContent = multipleChoiceQuestions[questionIndex_multipleChoice].choices[i];
+    });
+  }
+
   return index;
 };
 
-function randomQuestion(questions, questionDisplay, index) {
+function randomQuestion(questions, questionDisplay, index, isMultipleChoiceQuestion) {
 
   index = Math.floor(Math.random() * questions.length);
 
   questionDisplay.innerText = (index+1) +". "+ questions[index].question;
 
+  if (isMultipleChoiceQuestion == true) {
+
+    choiceDisplays_multipleChoice.forEach((element, i) => {
+      element.textContent = multipleChoiceQuestions[questionIndex_multipleChoice].choices[i];
+    });
+  }
+
   return index;
 };
 
 function wipeAnswers(correctOrNot, correctAnswer, input) {
+
   correctOrNot.innerText = "";
   correctAnswer.innerText = "";
-  input.value = "";
+  if (input != undefined || input != null) {
+    input.value = "";
+  }
 };
 
 
@@ -316,17 +341,28 @@ multipleChoiceQuestions.forEach((element) => { element.shuffleChoices() });
 
 //this is very ugly and bad code but it works, so it's ok
 questionDisplay_shortAnswer.innerText = (questionIndex_shortAnswer+1) +'. '+ shortAnswerQuestions[questionIndex_shortAnswer].question;
+
 questionDisplay_multipleChoice.innerText = (questionIndex_multipleChoice+1) +'. '+ multipleChoiceQuestions[questionIndex_multipleChoice].question;
+choiceDisplays_multipleChoice.forEach((element, i) => {
+  // console.log(i);
+  // console.log(element);
+  element.textContent = multipleChoiceQuestions[questionIndex_multipleChoice].choices[i];
+});
 
 //*nav buttons
 goBack_shortAnswer.addEventListener('click', () => {
 
   questionIndex_shortAnswer = previousQuestion(
-  shortAnswerQuestions, questionDisplay_shortAnswer, questionIndex_shortAnswer
+    shortAnswerQuestions,
+    questionDisplay_shortAnswer,
+    questionIndex_shortAnswer,
+    false
   );
 
   wipeAnswers(
-    correctOrNotDisplay_shortAnswer, correctAnswerDisplay_shortAnswer, userInput_shortAnswer
+    correctOrNotDisplay_shortAnswer,
+    correctAnswerDisplay_shortAnswer,
+    userInput_shortAnswer
   );
 
 });
@@ -334,11 +370,16 @@ goBack_shortAnswer.addEventListener('click', () => {
 goNext_shortAnswer.addEventListener('click', () => {
 
   questionIndex_shortAnswer = nextQuestion(
-    shortAnswerQuestions, questionDisplay_shortAnswer, questionIndex_shortAnswer
+    shortAnswerQuestions,
+    questionDisplay_shortAnswer,
+    questionIndex_shortAnswer,
+    false
   );
 
   wipeAnswers(
-    correctOrNotDisplay_shortAnswer, correctAnswerDisplay_shortAnswer, userInput_shortAnswer
+    correctOrNotDisplay_shortAnswer,
+    correctAnswerDisplay_shortAnswer,
+    userInput_shortAnswer
   );
 
 });
@@ -346,11 +387,16 @@ goNext_shortAnswer.addEventListener('click', () => {
 random_shortAnswer.addEventListener('click', () => {
 
   questionIndex_shortAnswer = randomQuestion(
-    shortAnswerQuestions, questionDisplay_shortAnswer, questionIndex_shortAnswer
+    shortAnswerQuestions,
+    questionDisplay_shortAnswer,
+    questionIndex_shortAnswer,
+    false
   );
 
   wipeAnswers(
-    correctOrNotDisplay_shortAnswer, correctAnswerDisplay_shortAnswer, userInput_shortAnswer
+    correctOrNotDisplay_shortAnswer,
+    correctAnswerDisplay_shortAnswer,
+    userInput_shortAnswer
   );
 
 });
@@ -388,11 +434,15 @@ allNav_shortAnswer.forEach((e) => {
 goBack_multipleChoice.addEventListener('click', () => {
 
   questionIndex_multipleChoice = previousQuestion(
-  multipleChoiceQuestions, questionDisplay_multipleChoice, questionIndex_multipleChoice
+    multipleChoiceQuestions,
+    questionDisplay_multipleChoice,
+    questionIndex_multipleChoice,
+    true
   );
 
   wipeAnswers(
-    correctOrNotDisplay_multipleChoice, correctAnswerDisplay_multipleChoice,
+    correctOrNotDisplay_multipleChoice,
+    correctAnswerDisplay_multipleChoice,
   );
 
 });
@@ -400,11 +450,15 @@ goBack_multipleChoice.addEventListener('click', () => {
 goNext_multipleChoice.addEventListener('click', () => {
 
   questionIndex_multipleChoice = nextQuestion(
-  multipleChoiceQuestions, questionDisplay_multipleChoice, questionIndex_multipleChoice
+    multipleChoiceQuestions,
+    questionDisplay_multipleChoice,
+    questionIndex_multipleChoice,
+    true
   );
 
   wipeAnswers(
-    correctOrNotDisplay_multipleChoice, correctAnswerDisplay_multipleChoice,
+    correctOrNotDisplay_multipleChoice,
+    correctAnswerDisplay_multipleChoice,
   );
 
 });
@@ -412,11 +466,15 @@ goNext_multipleChoice.addEventListener('click', () => {
 random_multipleChoice.addEventListener('click', () => {
 
   questionIndex_multipleChoice = randomQuestion(
-  multipleChoiceQuestions, questionDisplay_multipleChoice, questionIndex_multipleChoice
+    multipleChoiceQuestions,
+    questionDisplay_multipleChoice,
+    questionIndex_multipleChoice,
+    true
   );
 
   wipeAnswers(
-    correctOrNotDisplay_multipleChoice, correctAnswerDisplay_multipleChoice,
+    correctOrNotDisplay_multipleChoice,
+    correctAnswerDisplay_multipleChoice,
   );
 
 });
