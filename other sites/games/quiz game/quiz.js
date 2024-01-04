@@ -156,7 +156,7 @@ function appendChoices(index, isMultipleChoiceQuestion) {
       element.textContent = multipleChoiceQuestions[index].choices[i];
     });
   }
-}
+};
 
 
 
@@ -540,14 +540,18 @@ function submitShortAnswer() {
 
 function submitMultipleChoice() {
 
-  const userAnswer = getAnswer();
-  const correctAnswer = multipleChoiceQuestions[questionIndex_multipleChoice].correctAnswer;
-  console.log(userAnswer);
+  const question = multipleChoiceQuestions[questionIndex_multipleChoice];
+  const userAnswerIndex = getAnswer().index;
+  const correctAnswer = question.correctAnswer;
+  const correctIndex = question.choices.indexOf(correctAnswer);
+  // console.log(userAnswerIndex);
+  // console.log(checkAnswer());
+  // console.log(correctIndex);
 
-  //todo: actual code goes down here
+  //todo: actual code should go down here
   
 
-  //!this isn't actually useful yet. please fix it
+  //*another set of functions inside a function that is not even supposed to be a function
   function getAnswer() {
     let selectedElement;
 
@@ -555,13 +559,25 @@ function submitMultipleChoice() {
       // console.log(element);
       // console.log(element.checked);
       if (element.checked) {
-        //// selectedElement = element;
-
-        selectedElement = index;
+        selectedElement = { element:element, index:index };
       }
     });
 
     return selectedElement;
+  };
+
+  function checkAnswer() {
+
+    if (userAnswerIndex == correctIndex) {
+
+
+      return true;
+    }
+    else {
+
+
+      return false;
+    }
   };
 
 };
