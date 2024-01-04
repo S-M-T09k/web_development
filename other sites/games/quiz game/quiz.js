@@ -103,12 +103,7 @@ function previousQuestion(questions, questionDisplay, index, isMultipleChoiceQue
 
   questionDisplay.innerText = (index+1) +". "+ questions[index].question;
 
-  if (isMultipleChoiceQuestion == true) {
-
-    choiceDisplays_multipleChoice.forEach((element, i) => {
-      element.textContent = multipleChoiceQuestions[questionIndex_multipleChoice].choices[i];
-    });
-  }
+  appendChoices(index, isMultipleChoiceQuestion);
 
   return index;
 };
@@ -124,12 +119,7 @@ function nextQuestion(questions, questionDisplay, index, isMultipleChoiceQuestio
 
   questionDisplay.innerText = (index+1) +". "+ questions[index].question;
 
-  if (isMultipleChoiceQuestion == true) {
-
-    choiceDisplays_multipleChoice.forEach((element, i) => {
-      element.textContent = multipleChoiceQuestions[questionIndex_multipleChoice].choices[i];
-    });
-  }
+  appendChoices(index, isMultipleChoiceQuestion);
 
   return index;
 };
@@ -140,12 +130,7 @@ function randomQuestion(questions, questionDisplay, index, isMultipleChoiceQuest
 
   questionDisplay.innerText = (index+1) +". "+ questions[index].question;
 
-  if (isMultipleChoiceQuestion == true) {
-
-    choiceDisplays_multipleChoice.forEach((element, i) => {
-      element.textContent = multipleChoiceQuestions[questionIndex_multipleChoice].choices[i];
-    });
-  }
+  appendChoices(index, isMultipleChoiceQuestion);
 
   return index;
 };
@@ -154,10 +139,24 @@ function wipeAnswers(correctOrNot, correctAnswer, input) {
 
   correctOrNot.innerText = "";
   correctAnswer.innerText = "";
-  if (input != undefined || input != null) {
+  if (input != null) {
     input.value = "";
   }
 };
+
+function appendChoices(index, isMultipleChoiceQuestion) {
+
+  if (isMultipleChoiceQuestion == true) {
+
+    choiceDisplays_multipleChoice.forEach((element, i) => {
+      // console.log(object :>> ', multipleChoiceQuestions[index]);
+      // console.log('element :>> ', element);
+      // console.log('i :>> ', i);
+      // console.log('replacing :>> ', multipleChoiceQuestions[index ].choices[i]);
+      element.textContent = multipleChoiceQuestions[index].choices[i];
+    });
+  }
+}
 
 
 
@@ -335,6 +334,9 @@ let completed_shortAnswers = [];
 
 let questionIndex_multipleChoice = 0;
 let score_multipleChoice = 0;
+let tries_multipleChoice = 0;
+let completed_multipleChoice = [];
+
 
 //only for better player experience, this is unnecessary
 multipleChoiceQuestions.forEach((element) => { element.shuffleChoices() });
@@ -443,6 +445,7 @@ goBack_multipleChoice.addEventListener('click', () => {
   wipeAnswers(
     correctOrNotDisplay_multipleChoice,
     correctAnswerDisplay_multipleChoice,
+    null
   );
 
 });
@@ -459,6 +462,7 @@ goNext_multipleChoice.addEventListener('click', () => {
   wipeAnswers(
     correctOrNotDisplay_multipleChoice,
     correctAnswerDisplay_multipleChoice,
+    null
   );
 
 });
@@ -475,14 +479,21 @@ random_multipleChoice.addEventListener('click', () => {
   wipeAnswers(
     correctOrNotDisplay_multipleChoice,
     correctAnswerDisplay_multipleChoice,
+    null
   );
 
 });
 
+allNav_multipleChoice.forEach((e) => {
+
+  //todo: this thing need to be done
+});
+
 
 submit_shortAnswer.addEventListener('click', submitShortAnswer);
+submit_multipleChoice.addEventListener('click', submitMultipleChoice)
 
-//*this function should not go to the functions because it is a main functionality
+//*these function should not go to the functions because it is a main functionality
 function submitShortAnswer() {
 
   userAnswer_shortAnswer = toSimpleString(userInput_shortAnswer.value);
@@ -524,6 +535,34 @@ function submitShortAnswer() {
       submit_shortAnswer.removeEventListener('click', submitShortAnswer);
     };
   });
+
+};
+
+function submitMultipleChoice() {
+
+  const userAnswer = getAnswer();
+  const correctAnswer = multipleChoiceQuestions[questionIndex_multipleChoice].correctAnswer;
+  console.log(userAnswer);
+
+  //todo: actual code goes down here
+  
+
+  //!this isn't actually useful yet. please fix it
+  function getAnswer() {
+    let selectedElement;
+
+    choices_multipleChoice.forEach((element, index) => {
+      // console.log(element);
+      // console.log(element.checked);
+      if (element.checked) {
+        //// selectedElement = element;
+
+        selectedElement = index;
+      }
+    });
+
+    return selectedElement;
+  };
 
 };
 
