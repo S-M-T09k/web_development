@@ -4,7 +4,7 @@
 //*classes
 class Question {
   constructor(name, question, correctAnswer) {
-    
+
     this.name = name;
     this.question = question;
     this.correctAnswer = correctAnswer;
@@ -95,13 +95,13 @@ function toSimpleString(string) {
 function previousQuestion(questions, questionDisplay, index, isMultipleChoiceQuestion) {
 
   if (index == 0) {
-    index = questions.length -1;
+    index = questions.length - 1;
   }
   else {
     index--;
   };
 
-  questionDisplay.innerText = (index+1) +". "+ questions[index].question;
+  questionDisplay.textContent = (index + 1) + ". " + questions[index].question;
 
   appendChoices(index, isMultipleChoiceQuestion);
 
@@ -110,14 +110,14 @@ function previousQuestion(questions, questionDisplay, index, isMultipleChoiceQue
 
 function nextQuestion(questions, questionDisplay, index, isMultipleChoiceQuestion) {
 
-  if (index == questions.length -1) {
+  if (index == questions.length - 1) {
     index = 0;
   }
   else {
     index++;
   }
 
-  questionDisplay.innerText = (index+1) +". "+ questions[index].question;
+  questionDisplay.textContent = (index + 1) + ". " + questions[index].question;
 
   appendChoices(index, isMultipleChoiceQuestion);
 
@@ -128,7 +128,7 @@ function randomQuestion(questions, questionDisplay, index, isMultipleChoiceQuest
 
   index = Math.floor(Math.random() * questions.length);
 
-  questionDisplay.innerText = (index+1) +". "+ questions[index].question;
+  questionDisplay.textContent = (index + 1) + ". " + questions[index].question;
 
   appendChoices(index, isMultipleChoiceQuestion);
 
@@ -137,8 +137,8 @@ function randomQuestion(questions, questionDisplay, index, isMultipleChoiceQuest
 
 function wipeAnswers(correctOrNot, correctAnswer, input) {
 
-  correctOrNot.innerText = "";
-  correctAnswer.innerText = "";
+  correctOrNot.textContent = "";
+  correctAnswer.textContent = "";
   if (input != null) {
     input.value = "";
   }
@@ -342,9 +342,9 @@ let completed_multipleChoice = [];
 multipleChoiceQuestions.forEach((element) => { element.shuffleChoices() });
 
 //this is very ugly and bad code but it works, so it's ok
-questionDisplay_shortAnswer.innerText = (questionIndex_shortAnswer+1) +'. '+ shortAnswerQuestions[questionIndex_shortAnswer].question;
+questionDisplay_shortAnswer.textContent = (questionIndex_shortAnswer + 1) + '. ' + shortAnswerQuestions[questionIndex_shortAnswer].question;
 
-questionDisplay_multipleChoice.innerText = (questionIndex_multipleChoice+1) +'. '+ multipleChoiceQuestions[questionIndex_multipleChoice].question;
+questionDisplay_multipleChoice.textContent = (questionIndex_multipleChoice + 1) + '. ' + multipleChoiceQuestions[questionIndex_multipleChoice].question;
 choiceDisplays_multipleChoice.forEach((element, i) => {
   // console.log(i);
   // console.log(element);
@@ -428,7 +428,7 @@ allNav_shortAnswer.forEach((e) => {
     };
 
     tries_shortAnswer = 0;
-    
+
   });
 });
 
@@ -497,8 +497,9 @@ submit_multipleChoice.addEventListener('click', submitMultipleChoice)
 function submitShortAnswer() {
 
   userAnswer_shortAnswer = toSimpleString(userInput_shortAnswer.value);
+  const question = shortAnswerQuestions[questionIndex_shortAnswer];
   const userAnswer = userAnswer_shortAnswer;
-  const correctAnswer = shortAnswerQuestions[questionIndex_shortAnswer].correctAnswer;
+  const correctAnswer = question.correctAnswer;
 
   // console.log('userAnswer_shortAnswer :>> ', userAnswer_shortAnswer);
   // console.log('tries_shortAnswer :>> ', tries_shortAnswer);
@@ -507,30 +508,30 @@ function submitShortAnswer() {
 
     score_shortAnswer++;
     tries_shortAnswer = 5;
-    correctOrNotDisplay_shortAnswer.innerText = "✓ that is correct";
-    correctAnswerDisplay_shortAnswer.innerText = "correct answer: " + correctAnswer;
-    scoreDisplay_shortAnswer.innerText = score_shortAnswer;
-    
-    completed_shortAnswers.push(shortAnswerQuestions[questionIndex_shortAnswer].name);
+    correctOrNotDisplay_shortAnswer.textContent = "✓ that is correct";
+    correctAnswerDisplay_shortAnswer.textContent = "correct answer: " + correctAnswer;
+    scoreDisplay_shortAnswer.textContent = score_shortAnswer;
+
+    completed_shortAnswers.push(question.name);
   }
   else if (userAnswer == "" || userAnswer == null || userAnswer == undefined) {
 
-    correctOrNotDisplay_shortAnswer.innerText = "please input a valid answer";
+    correctOrNotDisplay_shortAnswer.textContent = "please input a valid answer";
   }
   else {
 
     tries_shortAnswer++;
-    correctOrNotDisplay_shortAnswer.innerText = "✕ that is incorrect";
+    correctOrNotDisplay_shortAnswer.textContent = "✕ that is incorrect";
 
     if (tries_shortAnswer === 5) {
-      correctAnswerDisplay_shortAnswer.innerText = "correct answer: " + correctAnswer;
-      completed_shortAnswers.push(shortAnswerQuestions[questionIndex_shortAnswer].name);
+      correctAnswerDisplay_shortAnswer.textContent = "correct answer: " + correctAnswer;
+      completed_shortAnswers.push(question.name);
     }
   }
 
-  completed_shortAnswers.forEach ((element) => {
+  completed_shortAnswers.forEach((element) => {
 
-    if (element === shortAnswerQuestions[questionIndex_shortAnswer].name) {
+    if (element === question.name) {
 
       submit_shortAnswer.removeEventListener('click', submitShortAnswer);
     };
@@ -548,8 +549,34 @@ function submitMultipleChoice() {
   // console.log(checkAnswer());
   // console.log(correctIndex);
 
-  //todo: actual code should go down here
-  
+  if (userAnswerIndex == correctIndex) {
+
+    score_multipleChoice++;
+    tries_multipleChoice = 1;
+    correctOrNotDisplay_multipleChoice.textContent = "✓";
+    correctAnswerDisplay_multipleChoice.textContent = "correct answer: " + correctAnswer;
+    scoreDisplay_multipleChoice.textContent = score_multipleChoice;
+
+    completed_multipleChoice.push(question.name);
+  }
+  else if (userAnswerIndex == undefined) {
+    correctAnswerDisplay_multipleChoice.textContent = "please choose an option";
+  }
+  else {
+
+    tries_multipleChoice++;
+    correctOrNotDisplay_multipleChoice.textContent = "✕";
+    correctAnswerDisplay_multipleChoice.textContent = "correct answer: " + correctAnswer;
+
+    completed_multipleChoice.push(question.name);
+  }
+
+  completed_multipleChoice.forEach((element) => {
+
+    if (element.name === question.name) {
+      submit_multipleChoice.removeEventListener('click', submitMultipleChoice);
+    }
+  });
 
   //*another set of functions inside a function that is not even supposed to be a function
   function getAnswer() {
@@ -559,25 +586,15 @@ function submitMultipleChoice() {
       // console.log(element);
       // console.log(element.checked);
       if (element.checked) {
-        selectedElement = { element:element, index:index };
+        selectedElement = { element: element, index: index };
       }
     });
 
+    if (selectedElement == undefined) {
+      selectedElement = { element: undefined, index: undefined }
+    }
+
     return selectedElement;
-  };
-
-  function checkAnswer() {
-
-    if (userAnswerIndex == correctIndex) {
-
-
-      return true;
-    }
-    else {
-
-
-      return false;
-    }
   };
 
 };
