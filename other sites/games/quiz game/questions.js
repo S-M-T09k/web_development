@@ -81,6 +81,7 @@ export const shortAnswerQuestions = [
     `How many bones are there in a human body?`,
     `206`
   ),
+  
 ];
 
 export const multipleChoiceQuestions = [
@@ -168,4 +169,5 @@ export const multipleChoiceQuestions = [
     `All of the above`,
     [`HTML`, `CSS`, `JSON`, `REST`, `All of the above`]
   ),
+  
 ];
