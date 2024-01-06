@@ -60,3 +60,18 @@ body{
     display: flex;
     justify-content: center;
 }
+
+#day-12{
+    width: 13cm;
+    height: 13cm;
+}
+
+#gruMeme{
+    width: 10cm;
+    height: 10cm;
+    display: none;
+}
+
+#hideImg{
+    visibility: hidden;
+}

@@ -20,27 +20,27 @@ document.querySelectorAll(".onlyNumbers").forEach(element => {
 const dieProbabilities = [
     {
         digit: 1,
-        Image: "dice-images/dice-six-faces-1.png"
+        Image: "images/dice-images/dice-six-faces-1.png"
     },
     {
         digit: 2,
-        Image: "dice-images/dice-six-faces-2.png"
+        Image: "images/dice-images/dice-six-faces-2.png"
     },
     {
         digit: 3,
-        Image: "dice-images/dice-six-faces-3.png"
+        Image: "images/dice-images/dice-six-faces-3.png"
     },
     {
         digit: 4,
-        Image: "dice-images/dice-six-faces-4.png"
+        Image: "images/dice-images/dice-six-faces-4.png"
     },
     {
         digit: 5,
-        Image: "dice-images/dice-six-faces-5.png"
+        Image: "images/dice-images/dice-six-faces-5.png"
     },
     {
         digit: 6,
-        Image: "dice-images/dice-six-faces-6.png"
+        Image: "images/dice-images/dice-six-faces-6.png"
     }
 ];
 
