@@ -139,9 +139,42 @@ function wipeAnswers(correctOrNot, correctAnswer, input) {
 
   correctOrNot.textContent = "";
   correctAnswer.textContent = "";
-  if (input != null) {
+  if (input == userInput_shortAnswer) {
     input.value = "";
   }
+  else if (input == choices_multipleChoice) {
+    input.forEach(e => e.checked = false);
+  }
+
+};
+
+function wipeAll () {
+  
+  alert("everything has been reset");
+  
+  wipeAnswers(
+    correctOrNotDisplay_shortAnswer,
+    correctAnswerDisplay_shortAnswer,
+    userInput_shortAnswer
+  );
+
+  wipeAnswers(
+    correctOrNotDisplay_multipleChoice,
+    correctAnswerDisplay_multipleChoice,
+    choices_multipleChoice
+  );
+
+  questionIndex_shortAnswer = 0;
+  userAnswer_shortAnswer = "";
+  score_shortAnswer = 0;
+  tries_shortAnswer = 0;
+  completed_shortAnswers = [];
+  
+  questionIndex_multipleChoice = 0;
+  score_multipleChoice = 0;
+  tries_multipleChoice = 0;
+  completed_multipleChoice = [];
+  
 };
 
 function appendChoices(index, isMultipleChoiceQuestion) {
@@ -361,12 +394,6 @@ goBack_shortAnswer.addEventListener('click', () => {
     false
   );
 
-  wipeAnswers(
-    correctOrNotDisplay_shortAnswer,
-    correctAnswerDisplay_shortAnswer,
-    userInput_shortAnswer
-  );
-
 });
 
 goNext_shortAnswer.addEventListener('click', () => {
@@ -378,12 +405,6 @@ goNext_shortAnswer.addEventListener('click', () => {
     false
   );
 
-  wipeAnswers(
-    correctOrNotDisplay_shortAnswer,
-    correctAnswerDisplay_shortAnswer,
-    userInput_shortAnswer
-  );
-
 });
 
 random_shortAnswer.addEventListener('click', () => {
@@ -393,12 +414,6 @@ random_shortAnswer.addEventListener('click', () => {
     questionDisplay_shortAnswer,
     questionIndex_shortAnswer,
     false
-  );
-
-  wipeAnswers(
-    correctOrNotDisplay_shortAnswer,
-    correctAnswerDisplay_shortAnswer,
-    userInput_shortAnswer
   );
 
 });
@@ -427,6 +442,12 @@ allNav_shortAnswer.forEach((e) => {
 
     };
 
+    wipeAnswers(
+      correctOrNotDisplay_shortAnswer,
+      correctAnswerDisplay_shortAnswer,
+      userInput_shortAnswer
+    );
+
     tries_shortAnswer = 0;
 
   });
@@ -442,12 +463,6 @@ goBack_multipleChoice.addEventListener('click', () => {
     true
   );
 
-  wipeAnswers(
-    correctOrNotDisplay_multipleChoice,
-    correctAnswerDisplay_multipleChoice,
-    null
-  );
-
 });
 
 goNext_multipleChoice.addEventListener('click', () => {
@@ -457,12 +472,6 @@ goNext_multipleChoice.addEventListener('click', () => {
     questionDisplay_multipleChoice,
     questionIndex_multipleChoice,
     true
-  );
-
-  wipeAnswers(
-    correctOrNotDisplay_multipleChoice,
-    correctAnswerDisplay_multipleChoice,
-    null
   );
 
 });
@@ -476,22 +485,45 @@ random_multipleChoice.addEventListener('click', () => {
     true
   );
 
-  wipeAnswers(
-    correctOrNotDisplay_multipleChoice,
-    correctAnswerDisplay_multipleChoice,
-    null
-  );
-
 });
 
 allNav_multipleChoice.forEach((e) => {
 
-  //todo: this thing need to be done
+  e.addEventListener('click', () => {
+
+    const questionName = multipleChoiceQuestions[questionIndex_multipleChoice].name;
+
+    for (const element of completed_multipleChoice) {
+
+      if (element === questionName) {
+        submit_multipleChoice.removeEventListener('click', submitMultipleChoice);
+        break;
+      }
+      else {
+
+        if (completed_multipleChoice.indexOf(element) === completed_multipleChoice.length - 1) {
+          submit_multipleChoice.addEventListener('click', submitMultipleChoice);
+        }
+        continue;
+      }
+      
+    };
+
+    wipeAnswers(
+      correctOrNotDisplay_multipleChoice,
+      correctAnswerDisplay_multipleChoice,
+      choices_multipleChoice
+    );
+
+    tries_multipleChoice = 0;
+  });
 });
 
 
 submit_shortAnswer.addEventListener('click', submitShortAnswer);
-submit_multipleChoice.addEventListener('click', submitMultipleChoice)
+submit_multipleChoice.addEventListener('click', submitMultipleChoice);
+
+window.onbeforeunload = wipeAll;
 
 //*these function should not go to the functions because it is a main functionality
 function submitShortAnswer() {
@@ -573,7 +605,9 @@ function submitMultipleChoice() {
 
   completed_multipleChoice.forEach((element) => {
 
-    if (element.name === question.name) {
+    ////console.log(element);
+
+    if (element === question.name) {
       submit_multipleChoice.removeEventListener('click', submitMultipleChoice);
     }
   });
