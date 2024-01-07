@@ -13,6 +13,7 @@ display.addEventListener('mouseup', hideText);
 const originalStyle = window.getComputedStyle(display);
 const originalBackgroundColor = originalStyle.backgroundColor;
 const originalBorderColor = originalStyle.borderColor;
+const originalText = display.textContent;
 
 console.log(originalStyle);
 console.log(originalBackgroundColor);
@@ -33,10 +34,10 @@ function changeBack ()
 function showText ()
 {
   this.style.color = "#ffffff";
-  this.innerText   = "This is some text";
+  this.textContent   = "This is some text";
 };
 
 function hideText ()
 {
-  this.innerText = "";
+  this.textContent = originalText;
 };
