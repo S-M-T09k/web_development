@@ -19,6 +19,8 @@ function moveX(event) {
     case "ArrowLeft":
     case "a":
       if (xPosition <= -250) {
+        xPosition = -250;
+        box.style.left = xPosition+"px";
         break;
       };
       xPosition -= speed;
@@ -28,6 +30,8 @@ function moveX(event) {
     case "ArrowRight":
     case "d":
       if (xPosition >= 250) {
+        xPosition = 250;
+        box.style.left = xPosition+"px";
         break;
       };
       xPosition += speed;
@@ -49,6 +53,8 @@ function moveY(event) {
     case "ArrowUp":
     case "w":
       if (yPosition <= -250) {
+        yPosition = -250;
+        box.style.top = yPosition+"px";
         break;
       };
       yPosition -= speed;
@@ -58,6 +64,8 @@ function moveY(event) {
     case "ArrowDown":
     case "s":
       if (yPosition >= 250) {
+        yPosition = 250;
+        box.style.top = yPosition+"px";
         break;
       };
       yPosition += speed;
