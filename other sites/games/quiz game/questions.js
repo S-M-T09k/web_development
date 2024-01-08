@@ -81,7 +81,31 @@ export const shortAnswerQuestions = [
     `How many bones are there in a human body?`,
     `206`
   ),
-  
+
+  new ShortAnswerQuestion(
+    `flashID`,
+    `What is the real name of The Flash?`,
+    `Barry Allen`
+  ),
+
+  new ShortAnswerQuestion(
+    `squareRootOf784`,
+    `What is the square root of 784?`,
+    `28`
+  ),
+
+  new ShortAnswerQuestion(
+    `secondSpiderManActor`,
+    `What is the name of the person who played spider-man in "The Amazing Spider-Man" (provide full name)`,
+    `Andrew Garfield`
+  ),
+
+  new ShortAnswerQuestion(
+    `ownerOfFacebook`,
+    `Who owns Facebook? (provide full name)`,
+    `Mark Zuckerberg`
+  ),
+
 ];
 
 export const multipleChoiceQuestions = [
@@ -168,6 +192,13 @@ export const multipleChoiceQuestions = [
     `In programming, which of these are not considered to be a real programming language?`,
     `All of the above`,
     [`HTML`, `CSS`, `JSON`, `REST`, `All of the above`]
+  ),
+
+  new MultipleChoiceQuestion(
+    `primeNumber`,
+    `Which of the following is a prime number?`,
+    `2`,
+    [`2`, `9`, `1`, `None of the above`, `All of the above`]
   ),
   
 ];
