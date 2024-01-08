@@ -108,8 +108,11 @@
     </h3>
   </div>
 
+  <br><br><br>
+
   <div class="container" id="day-7">
-    <input type="button" value="run day-7" onclick="runDay7()">
+    <input type="button" value="run day-7 (do ctrl+shift+i and go to console before running)"
+    onclick="runDay7()">
   </div>
 
   <br><br><br>
@@ -132,7 +135,9 @@
     <hr>
   </div>
 
-  <div class="container centerParent" id="day-13">
+  <br><br><br>
+
+  <div class="container centerParent" id="box-container">
     <h2>move the box around</h2>
     <p>
       click on the box once and use AWSD or arrow keys; can't move diagonally
@@ -141,9 +146,22 @@
       <br>
       also, just pretend like you can't clip through the wall
     </p>
-    <div class="container" id="box-container" tabindex="0">
+    <div class="container" id="day-13" tabindex="0">
       <div class="movable box"></div>
     </div>
+  </div>
+
+  <br><br><br>
+
+  <div class="container centerParent">
+    <h3>plays a set animation</h3>
+    <input type="button" value="start animation" id="startAnimation">
+    
+    <div class="container" id="day-14">
+      <div class="box" id="toAnimate"></div>
+    </div>
+
+    <input type="button" value="reset" id="resetAnimation">
   </div>
   
 
@@ -165,6 +183,7 @@
   <script src="day-11 events.js" type="module"></script>
   <script src="day-12(not really).js"></script>
   <script src="day-13 move div.js"></script>
+  <script src="day-14 animations.js"></script>
 
   <script src="test.js"></script>
 </body>
