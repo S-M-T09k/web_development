@@ -26,12 +26,23 @@ addButton.addEventListener('click', () => {
 
 	input.value = null;
 	//!this is on the right path carry on with this idea
-	listItems = list.childNodes;
-	console.log(listItems);
+	// listItems = list.childNodes;
+	// console.log(listItems);
 
 });
 
-// removeButton.addEventListener('click', removeListItem)
+removeButton.addEventListener('click', () => {
+
+	removeListItem();
+
+	if (toDoList.length > 0) {
+		removeButton.style.visibility = "visible";
+	}
+	else {
+		removeButton.style.visibility = "hidden";
+	}
+
+})
 
 function createListItem(text) {
 	
@@ -60,24 +71,28 @@ function createListItem(text) {
 
 
 //!this shit doesn't work yet
-// function removeListItem(item)	{
+//!it works but still needs adjusting
+function removeListItem()	{
 
-// 	let checkBoxes = [];
-// 	toDoList.forEach((element) => {
-// 		checkBoxes.push(element.lastElementChild);
-// 	});
+	let checkBoxes = [];
+	toDoList.forEach((element) => {
+		checkBoxes.push(element.lastElementChild);
+	});
 
-// 	console.log(checkBoxes);
+	// console.log(toDoList);
+	// console.log(checkBoxes);
 
-// 	checkBoxes.forEach((element) => {
+	checkBoxes.forEach((checkBox) => {
 
-// 		if (element.checked) {
-			
-// 		}
+		//!this is shit code, probably no one can read this
+		if (checkBox.checked) {
+			checkBox.parentElement.remove();
+			toDoList.splice(toDoList.indexOf(checkBox.parentElement), 1);
+		}
 
-// 	})
+	});
 
-// }
+};
 
 
 // add.onclick = () => 
