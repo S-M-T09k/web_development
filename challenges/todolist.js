@@ -4,6 +4,7 @@ const removeButton = document.querySelector('#forRemove');
 const list = document.querySelector("#list");
 const input = document.querySelector("#input");
 let toDoListIndex = 0;
+let listItems;
 
 
 
@@ -24,10 +25,13 @@ addButton.addEventListener('click', () => {
 	}
 
 	input.value = null;
+	//!this is on the right path carry on with this idea
+	listItems = list.childNodes;
+	console.log(listItems);
 
 });
 
-removeButton.addEventListener('click', removeListItem)
+// removeButton.addEventListener('click', removeListItem)
 
 function createListItem(text) {
 	
