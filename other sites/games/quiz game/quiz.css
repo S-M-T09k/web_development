@@ -54,11 +54,16 @@ nav{
 
 .choices{
   margin-left: -2px;
-  margin-right: 5px;
+  margin-right: -2px;
   cursor: pointer;
 }
 
-/* #choiceArea{
-  display: flex;
-  flex-wrap: nowrap;
-} */
+.choiceContainer{
+  margin-left: 10px;
+  margin-bottom: 2px;
+  display: inline-block;
+}
+
+  /* #choiceArea{
+    display: flex;
+  } */
