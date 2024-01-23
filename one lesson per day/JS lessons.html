@@ -137,7 +137,7 @@
 
   <br><br><br>
 
-  <div class="container centerParent" id="box-container">
+  <div class="container centerParent" id="day-13">
     <h2>move the box around</h2>
     <p>
       click on the box once and use AWSD or arrow keys; can't move diagonally
@@ -146,18 +146,18 @@
       <br>
       also, just pretend like you can't clip through the wall
     </p>
-    <div class="container" id="day-13" tabindex="0">
+    <div class="container" id="boxMovementArea" tabindex="0">
       <div class="movable box"></div>
     </div>
   </div>
 
   <br><br><br>
 
-  <div class="container centerParent">
+  <div class="container centerParent" id="day-14">
     <h3>plays a set animation</h3>
     <input type="button" value="start animation" id="startAnimation">
     
-    <div class="container" id="day-14">
+    <div class="container" id="animationBox">
       <div class="box" id="toAnimate"></div>
     </div>
 
@@ -169,6 +169,19 @@
   <div class="container" id="day-15">
     <input type="button" value="close page" id="closeWindow">
     <input type="button" value="Open YouTube.com" id="openNewPage">
+  </div>
+
+  <br><br><br>
+
+  <div class="container centerParent" id="day-16">
+    <div class="container" id="stopWatch">
+      <div id="timeDisplay_stopWatch">00:00:00:00</div>
+      <div>
+        <input type="button" class="timerButton" value="Start" id="startStopwatch">
+        <input type="button" class="timerButton" value="Pause" id="pauseStopwatch">
+        <input type="button" class="timerButton" value="Reset" id="resetStopwatch">
+      </div>
+    </div>
   </div>
   
 
@@ -192,6 +205,7 @@
   <script src="day-13 move div.js"></script>
   <script src="day-14 animations.js"></script>
   <script src="day-15 window.js"></script>
+  <script src="day-16 stopWatch.js"></script>
 
   <script src="test.js"></script>
 </body>

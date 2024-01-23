@@ -1,5 +1,5 @@
 const box = document.querySelector('.box');
-const boxContainer = document.querySelector('#box-container');
+const boxContainer = document.querySelector('#day-13');
 
 let xPosition = 0;
 let yPosition = 0;

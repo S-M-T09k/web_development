@@ -3,6 +3,10 @@ body{
     color: whitesmoke;
 }
 
+input[type = button]{
+    cursor: pointer;
+}
+
 .container{
     text-align: center;
 }
@@ -85,7 +89,7 @@ body{
     display: none;
 }
 
-#day-13{
+#boxMovementArea{
     background-color: dimgrey;
     border: wheat solid 2px;
     border-radius: 4px;
@@ -105,7 +109,7 @@ body{
     border-radius: 5px;
 }
 
-#day-14{
+#animationBox{
     border: plum solid 2px;
     border-radius: 2px;
     height: 274px;
@@ -114,4 +118,33 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#stopWatch{
+    border: #43c5ce solid 2px;
+    height: 150px;
+    width: 350px;
+    background-color: #7977ff;
+    display: block;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+}
+
+#timeDisplay_stopWatch{
+    color: black;
+    font-size: 50px;
+    font-family: 'consolas', monospace;
+}
+
+.timerButton{
+    margin: 2px;
+    font-size: 20px;
+    width: 100px;
+    height: 30px;
+    /* border: 0.5px solid; */
+    border-radius: 10px;
+    background-color: black;
+    color: salmon;
+    font-family: 'Courier New', Courier, monospace;
 }
