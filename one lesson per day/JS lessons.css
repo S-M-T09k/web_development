@@ -148,3 +148,21 @@ input[type = button]{
     color: salmon;
     font-family: 'Courier New', Courier, monospace;
 }
+
+#cellContainer .cell{
+    width: 100px;
+    height: 100px;
+    border: whitesmoke 2px solid;
+    display: block;
+    box-shadow: 0 0 0 2px;
+    cursor: pointer;
+    /* line-height: normal; */
+    font-size: 75px;
+    font-family: cursive, 'Courier New', Courier, monospace;
+}
+
+#cellContainer{
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    margin: 10px;
+}
