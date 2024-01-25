@@ -8,3 +8,11 @@ for (let i = 0; i < array.length; i++) {
   console.log(element);
 };
 */
+
+// let a = 1;
+// let b = 1;
+// let c = 1;
+
+// if (a == b == c) {
+//   console.log("alfjalfjajtlajeiffavcmawetimnaifdofjaowealfdsaglh");
+// }
