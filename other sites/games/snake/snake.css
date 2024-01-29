@@ -12,6 +12,7 @@ body{
 .centerParent #gameBoard{
   width: 500px;
   height: 500px;
+  background-color: #333333;
   border: 5px solid gold;
 }
 
@@ -21,24 +22,47 @@ body{
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-#gameContainer #reset{
+#gameContainer .buttons{
   font-size: 25px;
-  width: 100px;
+  width: 200px;
   height: 50px;
   border: 2px solid gray;
   background-color: black;
   color: green;
   border-radius: 10px;
   cursor: pointer;
+  margin: 3px;
 }
 
-#gameContainer #reset:hover{
+#gameContainer .buttons:hover{
   transition: 300ms;
   background-color: green;
   color: black;
 }
 
-#gameContainer #reset:active{
+#gameContainer .buttons:active{
   background-color: #ffffff;
   color: #0000ff;
+}
+
+.rotating{
+  width: 48px;
+  height: 48px;
+  border: 5px solid #FFF;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  /* position: fixed; */
+  margin: 2rem;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

@@ -8,12 +8,13 @@
 </head>
 <body>
   
-  <div class="centerParent" id="gameContainer">
-    <canvas class="container" id="gameBoard">
+  <div class="centerParent" id="gameContainer" tabindex="0">
+    <canvas class="container" id="gameBoard" tabindex="1" height="500px" width="500px">
       
     </canvas>
-    <div id="score">0</div>
-    <input type="button" value="Restart" id="reset">
+    <div id="score" class="">0</div>
+    <input type="button" value="Start Game" class="buttons" id="start">
+    <input type="button" value="Restart Game" class="buttons" id="reset">
   </div>
 
   <script src="snake.js"></script>
