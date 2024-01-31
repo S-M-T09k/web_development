@@ -1,5 +1,6 @@
 body{
   background-color: #222222;
+  color: antiquewhite;
 }
 
 .centerParent{
@@ -9,11 +10,18 @@ body{
   justify-items: center; 
   align-items: center; 
 }
+
 .centerParent #gameBoard{
   width: 500px;
   height: 500px;
   background-color: #333333;
   border: 5px solid gold;
+}
+
+#BIG{
+  font-size: 50px;
+  margin: 0px;
+  padding: 0px;
 }
 
 #gameContainer #score{

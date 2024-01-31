@@ -59,6 +59,7 @@ function startGame() {
 
   resetButton.addEventListener('click', resetGame);
   gameBoard.addEventListener('keypress', changeDirection);
+  startButton.addEventListener('keypress', changeDirection);
   startButton.removeEventListener('click', startGame);
 
   running = true;
@@ -70,10 +71,9 @@ function startGame() {
     scoreDisplay.classList.remove('rotating');
     scoreDisplay.textContent = score;
     createFood();
-    drawFood();
     tick();
 
-  }, 100);
+  }, 500);
 
 };
 
@@ -82,7 +82,6 @@ function tick() {
     setTimeout(() => {
 
       clearBoard();
-      createFood();
       drawFood();
       moveSnake();
       drawSnake();
@@ -135,8 +134,10 @@ function moveSnake() {
 
   snake.unshift(head);
 
-  if (false) {
-    
+  if (snake[0].x === foodX && snake[0].y === foodY) {
+    score++;
+    scoreDisplay.textContent = score;
+    createFood();
   }
   else {
     snake.pop();
@@ -157,18 +158,104 @@ function drawSnake() {
   
 };
 
-function changeDirection() {
+function changeDirection(event) {
+
+  const key = event.key;
+
+  const goingUp = (yVelocity === -unitSize);
+  const goingDown = (yVelocity === unitSize);
+  const goingLeft = (xVelocity === -unitSize);
+  const goingRight = (xVelocity === unitSize);
+
+  switch (true) {
+
+    case (!goingDown && key === 'w'):
+    case (!goingDown && key === 'ArrowUp'):
+      xVelocity = 0;
+      yVelocity = -unitSize;
+      break;
+
+    case (!goingUp && key === 's'):
+    case (!goingUp && key === 'ArrowDown'):
+      xVelocity = 0;
+      yVelocity = unitSize;
+      break;
+
+    case (!goingRight && key === 'a'):
+    case (!goingRight && key === 'ArrowLeft'):
+      xVelocity = -unitSize;
+      yVelocity = 0;
+      break;
+
+    case (!goingLeft && key === 'd'):
+    case (!goingLeft && key === 'ArrowRight'):
+      xVelocity = unitSize;
+      yVelocity = 0;
+      break;
+
+    default:
+      console.log(`you're pressing ${key}`);
+      break;
+
+  };
 
 };
 
 function checkGameOver() {
-  
+
+  switch(true){
+
+    case snake[0].x < 0:
+    case snake[0].x >= boardWidth:
+    case snake[0].y < 0:
+    case snake[0].y >= boardHeight:
+      running = false;
+      break;
+
+  };
+
+  for (let i = 1; i < snake.length; i++) {
+    const bodyPart = snake[i];
+    if (bodyPart.x === snake[0].x && bodyPart.y === snake[0].y) {
+      running = false;
+    };
+  };
+
 };
 
 function displayGameOver() {
-  
+  ctx.font = "50px MV Boli";
+  ctx.fillStyle = "black";
+  ctx.textAlign = "center";
+  ctx.fillText("Game Over!!", boardWidth/2, boardHeight/2);
 };
 
 function resetGame() {
   
+  running = false;
+  clearBoard();
+  score = 0;
+  xVelocity = unitSize;
+  yVelocity = 0;
+  scoreDisplay.textContent = "";
+
+  snake = [
+
+    new snakeBody(unitSize*4, 0),
+    new snakeBody(unitSize*3, 0),
+    new snakeBody(unitSize*2, 0),
+    new snakeBody(unitSize, 0),
+    new snakeBody(0, 0),
+  
+  ];
+
+  scoreDisplay.classList.add("rotating");
+  setTimeout(() => {
+
+    scoreDisplay.classList.remove("rotating");
+    scoreDisplay.textContent = score;
+    startButton.addEventListener('click', startGame);
+
+  }, 100);
+
 };
