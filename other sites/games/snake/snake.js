@@ -21,7 +21,9 @@ console.log('boardHeight :>> ', boardHeight);
 const backgroundColor = "#333333";
 const snakeColor = "lightgreen";
 const snakeBoarder = "grey";
-const foodColor = "red";
+const apple = "red";
+const orange = "orange";
+const banana = "yellow";
 const unitSize = 20;
 
 let running = false;
@@ -82,7 +84,7 @@ function tick() {
     setTimeout(() => {
 
       clearBoard();
-      drawFood();
+      drawFood(apple);
       moveSnake();
       drawSnake();
       checkGameOver();
@@ -107,6 +109,19 @@ function createFood() {
   foodX = randomFood(boardWidth);
   foodY = randomFood(boardHeight);
 
+  //// foodX = 100;
+  //// foodY = 100;
+
+  snake.forEach((bodyPart) => {
+
+    if (foodX === bodyPart.x && foodY === bodyPart.y) {
+      createFood();
+    } else {
+      return [foodX, foodY];
+    }
+
+  })
+
   function randomFood(max) {
     const randomNum = Math.floor((Math.random() * max) / unitSize) * unitSize;
     return randomNum;
@@ -114,13 +129,12 @@ function createFood() {
 
   //// console.log('foodX :>> ', foodX);
   //// console.log('foodY :>> ', foodY);
-  return [foodX, foodY];
 
 };
 
-function drawFood() {
+function drawFood(food) {
 
-  ctx.fillStyle = foodColor;
+  ctx.fillStyle = food;
   ctx.fillRect(foodX, foodY, unitSize, unitSize);
   // console.log(foodX);
   // console.log(foodY);
@@ -147,14 +161,25 @@ function moveSnake() {
 
 function drawSnake() {
 
+  ctx.fillStyle = "lime";
+  ctx.fillRect(snake[0].x, snake[0].y, unitSize, unitSize);
+
   ctx.fillStyle = snakeColor;
   ctx.strokeStyle = snakeBoarder;
-  snake.forEach((part) => {
-    
+  for (let i = 1; i < snake.length; i++) {
+    const part = snake[i];
+
     ctx.fillRect(part.x, part.y, unitSize, unitSize);
     ctx.strokeRect(part.x, part.y, unitSize, unitSize);
 
-  })
+  };
+
+  //// snake.forEach((part) => {
+    
+  ////   ctx.fillRect(part.x, part.y, unitSize, unitSize);
+  ////   ctx.strokeRect(part.x, part.y, unitSize, unitSize);
+
+  //// })
   
 };
 

@@ -8,20 +8,28 @@
 </head>
 <body>
   
-  <div class="centerParent" id="gameContainer" tabindex="0">
     <h1 id="BIG">Snake</h1>
+
+  <div class="centerParent" id="gameContainer" tabindex="0">
     <p>
       use the AWSD keys to move the snake around <br>
       you need to press start game again after you've rested <br>
       (tell me if that's a bad idea, I can fix it)
     </p>
+
     <canvas class="container" id="gameBoard" tabindex="1" height="500px" width="500px">
       
     </canvas>
+
     <div id="score" class="">0</div>
     <input type="button" value="Start Game" class="buttons" id="start">
     <input type="button" value="Restart Game" class="buttons" id="reset">
   </div>
+
+  <p id="gameInfo">
+    Game Info: //this is for debugging purposes delete it afterwards<br>
+    red: apple == 1, orange: orange == 2, banana: yellow == 3
+  </p>
 
   <script src="snake.js"></script>
 </body>
