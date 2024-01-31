@@ -225,7 +225,7 @@ function checkGameOver() {
 
 function displayGameOver() {
   ctx.font = "50px MV Boli";
-  ctx.fillStyle = "black";
+  ctx.fillStyle = "#fff";
   ctx.textAlign = "center";
   ctx.fillText("Game Over!!", boardWidth/2, boardHeight/2);
 };
