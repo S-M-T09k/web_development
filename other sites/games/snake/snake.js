@@ -29,6 +29,7 @@ const unitSize = 20;
 let running = false;
 let xVelocity = unitSize;
 let yVelocity = 0;
+let speed = 100;
 
 let foodX;
 let foodY;
@@ -87,10 +88,11 @@ function tick() {
       drawFood(apple);
       moveSnake();
       drawSnake();
+      adjustSpeed();
       checkGameOver();
       tick();
 
-    }, 100)
+    }, speed)
   }
   else {
     displayGameOver();
@@ -221,6 +223,22 @@ function changeDirection(event) {
     default:
       console.log(`you're pressing ${key}`);
       break;
+
+  };
+
+};
+
+function adjustSpeed() {
+
+  speed = 205;
+  
+  for (const part of snake) {
+
+    speed -= 5;
+
+    if (speed <= 75) {
+      break;
+    };
 
   };
 
