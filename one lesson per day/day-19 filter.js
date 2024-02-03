@@ -1,0 +1,1 @@
+const userNumber = document.querySelector('#day-19 #userInputNumbers');

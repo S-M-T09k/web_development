@@ -111,8 +111,7 @@
   <br><br><br>
 
   <div class="container" id="day-7">
-    <input type="button" value="run day-7 (do ctrl+shift+i and go to console before running)"
-    onclick="runDay7()">
+    <input type="button" value="run day-7 (do ctrl+shift+i and go to console before running)" onclick="runDay7()">
   </div>
 
   <br><br><br>
@@ -156,7 +155,7 @@
   <div class="container centerParent" id="day-14">
     <h3>plays a set animation</h3>
     <input type="button" value="start animation" id="startAnimation">
-    
+
     <div class="container" id="animationBox">
       <div class="box" id="toAnimate"></div>
     </div>
@@ -214,30 +213,59 @@
       </a>
     </h1>
   </div>
-  
+
+  <br><br><br>
+
+  <div class="container" id="day-19">
+    <h4>filter some numbers</h4>
+    <input type="number" name="some number" id="userInputNumbers" placeholder="a number" class="onlyNumbers">
+    <input type="button" value="add" id="addNumber">
+    <br>
+
+    <input type="radio" name="filterTypes" id="filterEven" class="filterTypes">
+    <label for="filterEven">Even</label>
+
+    <input type="radio" name="filterTypes" id="filterOdd" class="filterTypes">
+    <label for="filterOdd">Odd</label>
+
+    <input type="radio" name="filterTypes" id="filterPrime" class="filterTypes">
+    <label for="filterPrime">Prime</label>
+
+    <input type="radio" name="filterTypes" id="filterDivisibleBy17" class="filterTypes">
+    <label for="filterDivisibleBy17">Divisible by 17</label>
+    <br>
+    
+    <input type="button" value="Filter" id="filterBtn">
+
+    <ol class="userInputs">
+
+    </ol>
+  </div>
+
 
   <br><br>
 
   <h2>Have a nice day!</h2>
 
 
-  <script src="day-1 objects.js"></script>
-  <script src="day-2 static+.js"></script>
-  <script src="day-3 stringManagement.js"></script>
-  <script src="day-4 dice roller.js"></script>
-  <script src="day-5 password generater.js"></script>
-  <script src="day-6 was memory.js"></script>
-  <script src="day-7 setTime.js"></script>
-  <script src="day-8 clock.js"></script>
-  <script src="day-9 modules.js" type="module"></script>
-  <script src="day-10.js"></script>
-  <script src="day-11 events.js" type="module"></script>
-  <script src="day-12(not really).js"></script>
-  <script src="day-13 move div.js"></script>
-  <script src="day-14 animations.js"></script>
-  <script src="day-15 window.js"></script>
-  <script src="day-16 stopWatch.js"></script>
-  <script src="day-17 itc-tac-toe.js"></script>
+  <script src="./day-1 objects.js"></script>
+  <script src="./day-2 static+.js"></script>
+  <script src="./day-3 stringManagement.js"></script>
+  <script src="./day-4 dice roller.js"></script>
+  <script src="./day-5 password generater.js"></script>
+  <script src="./day-6 was memory.js"></script>
+  <script src="./day-7 setTime.js"></script>
+  <script src="./day-8 clock.js"></script>
+  <script src="./day-9 modules.js" type="module"></script>
+  <script src="./day-10.js"></script>
+  <script src="./day-11 events.js" type="module"></script>
+  <script src="./day-12(not really).js"></script>
+  <script src="./day-13 move div.js"></script>
+  <script src="./day-14 animations.js"></script>
+  <script src="./day-15 window.js"></script>
+  <script src="./day-16 stopWatch.js"></script>
+  <script src="./day-17 itc-tac-toe.js"></script>
+  <script src="./day-19 filter.js"></script>
 
   <script src="test.js"></script>
 </body>

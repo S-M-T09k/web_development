@@ -1,31 +1,36 @@
-body{
+body {
     background-color: black;
     color: whitesmoke;
 }
 
-input[type = button]{
+input[type=button] {
     cursor: pointer;
 }
 
-.container{
+input[type=radio] {
+    cursor: pointer;
+}
+
+.container {
     text-align: center;
 }
 
-.centerParent{
-    display: grid; 
-    grid-template-columns: 1fr; 
-    grid-template-rows: repeat(auto-fit, minmax(100px, auto)); 
-    justify-items: center; 
-    align-items: center; 
+.centerParent {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(auto-fit, minmax(100px, auto));
+    justify-items: center;
+    align-items: center;
 }
 
-#day-4{
+#day-4 {
     font-family: Arial, sans-serif;
     text-align: center;
     font-size: 1.5rem;
     font-weight: bold;
 }
-.diceRollerBtn{
+
+.diceRollerBtn {
     font-size: 1.5rem;
     padding: 10px 15px;
     border-radius: 10px;
@@ -35,31 +40,37 @@ input[type = button]{
     font-weight: bold;
     cursor: pointer;
 }
-.diceRollerBtn:hover{
+
+.diceRollerBtn:hover {
     background-color: hsl(210, 92%, 44%);
 }
-.diceRollerBtn:active{
+
+.diceRollerBtn:active {
     background-color: hsl(210, 100%, 69%);
 }
-#numberOfDice{
+
+#numberOfDice {
     font-size: 2rem;
     width: 150px;
     text-align: center;
     font-weight: bold;
 }
-#diceResults{
+
+#diceResults {
     margin: 25px;
 }
-#diceDisplay img{
+
+#diceDisplay img {
     width: 150px;
     margin: 5px;
 }
-#notice{
+
+#notice {
     font-size: xx-small;
     font-family: 'Courier New';
 }
 
-#events{
+#events {
     width: 100px;
     height: 100px;
     display: flex;
@@ -69,27 +80,27 @@ input[type = button]{
     justify-content: center;
 }
 
-#day-11{
+#day-11 {
     display: flex;
     justify-content: center;
 }
 
-#day-12{
+#day-12 {
     width: 13cm;
     height: 13cm;
 }
 
-#gruMeme{
+#gruMeme {
     width: 10cm;
     height: 10cm;
     visibility: hidden;
 }
 
-#hideImg{
+#hideImg {
     display: none;
 }
 
-#boxMovementArea{
+#boxMovementArea {
     background-color: dimgrey;
     border: wheat solid 2px;
     border-radius: 4px;
@@ -100,7 +111,7 @@ input[type = button]{
     align-items: center;
 }
 
-.box{
+.box {
     background-color: #61f0f5;
     border: #0004ff solid 2px;
     height: 20px;
@@ -109,7 +120,7 @@ input[type = button]{
     border-radius: 5px;
 }
 
-#animationBox{
+#animationBox {
     border: plum solid 2px;
     border-radius: 2px;
     height: 274px;
@@ -120,7 +131,7 @@ input[type = button]{
     align-items: center;
 }
 
-#stopWatch{
+#stopWatch {
     border: #43c5ce solid 2px;
     height: 150px;
     width: 350px;
@@ -131,13 +142,13 @@ input[type = button]{
     align-items: center;
 }
 
-#timeDisplay_stopWatch{
+#timeDisplay_stopWatch {
     color: black;
     font-size: 50px;
     font-family: 'consolas', monospace;
 }
 
-.timerButton{
+.timerButton {
     margin: 2px;
     font-size: 20px;
     width: 100px;
@@ -149,7 +160,7 @@ input[type = button]{
     font-family: 'Courier New', Courier, monospace;
 }
 
-#cellContainer .cell{
+#cellContainer .cell {
     width: 100px;
     height: 100px;
     border: whitesmoke 2px solid;
@@ -161,23 +172,35 @@ input[type = button]{
     font-family: cursive, 'Courier New', Courier, monospace;
 }
 
-#cellContainer{
+#cellContainer {
     display: grid;
     grid-template-columns: repeat(3, auto);
     margin: 10px;
 }
 
-#day-17 #resetTicTacToe{
+#day-17 #resetTicTacToe {
     font-size: 20px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-#day-17 #gameStatus{
+#day-17 #gameStatus {
     font-size: 25px;
     margin-bottom: 5px;
 
 }
 
-#day-18 a{
+#day-18 a {
     color: mediumaquamarine;
+}
+
+#day-19 .filterTypes {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+#day-19 .userInputs {
+    margin: 10px;
+    font-size: large;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: left;
 }

@@ -11,18 +11,18 @@ class Card
 };
 
 const cards = [
-    new Card ("cheeseburger", 'images/cheeseburger.png', ),
-    new Card ("fries",        'images/fries.png', ),
-    new Card ("hotdog",       'images/hotdog.png', ),
-    new Card ("ice-cream",    'images/ice-cream.png', ),
-    new Card ("milkshake",    'images/milkshake.png', ),
-    new Card ("pizza",        'images/pizza.png', ),
-    new Card ("cheeseburger", 'images/cheeseburger.png', ),
-    new Card ("fries",        'images/fries.png', ),
-    new Card ("hotdog",       'images/hotdog.png', ),
-    new Card ("ice-cream",    'images/ice-cream.png', ),
-    new Card ("milkshake",    'images/milkshake.png', ),
-    new Card ("pizza",        'images/pizza.png', ),
+    new Card ("cheeseburger", './Images/cheeseburger.png', ),
+    new Card ("fries",        './Images/fries.png', ),
+    new Card ("hotdog",       './Images/hotdog.png', ),
+    new Card ("ice-cream",    './Images/ice-cream.png', ),
+    new Card ("milkshake",    './Images/milkshake.png', ),
+    new Card ("pizza",        './Images/pizza.png', ),
+    new Card ("cheeseburger", './Images/cheeseburger.png', ),
+    new Card ("fries",        './Images/fries.png', ),
+    new Card ("hotdog",       './Images/hotdog.png', ),
+    new Card ("ice-cream",    './Images/ice-cream.png', ),
+    new Card ("milkshake",    './Images/milkshake.png', ),
+    new Card ("pizza",        './Images/pizza.png', ),
 ];
 
 cards.sort(() => 0.5 - Math.random());
@@ -40,9 +40,10 @@ CreateBoard(cards);
 function CreateBoard(cards) {
     cards.forEach(element => {
         const card = document.createElement("img");
-        card.setAttribute('src', 'images/blank.png');
+        card.setAttribute('src', './Images/blank.png');
         card.setAttribute('data-id', cards.indexOf(element));
         card.setAttribute('id-to-match', element.name);
+        card.setAttribute('width', '100');
         grid.append(card);
         allEditableCards.push(card);
         card.addEventListener('click', FlipCard);
