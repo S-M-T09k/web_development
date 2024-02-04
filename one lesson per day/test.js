@@ -16,3 +16,9 @@ for (let i = 0; i < array.length; i++) {
 // if (a == b == c) {
 //   console.log("alfjalfjajtlajeiffavcmawetimnaifdofjaowealfdsaglh");
 // }
+
+// let a = [1, 2, 3, 4, 5];
+// let b = a.filter((number) => {
+//   return !(number % 2);
+// });
+// console.log('b :>> ', b);
