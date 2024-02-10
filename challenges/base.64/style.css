@@ -1,0 +1,21 @@
+body {
+  background-color: #333;
+  text-align: center;
+  color: aliceblue;
+}
+
+.gridCenter {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(auto-fit, minmax(100px, auto));
+  justify-items: center;
+  align-items: center;
+}
+
+.container {
+  height: 25rem;
+  width: 70vw;
+  border: green solid 2px;
+  padding: 3px;
+  margin: 5px;
+}

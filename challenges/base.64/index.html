@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>decode/encode</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="shortcut icon" href="./favicon.jpg" type="image/x-icon">
+</head>
+
+<body>
+
+  <h1 class="title">Base16</h1>
+  
+  <div class="gridCenter">
+    <div class="container">
+      <div class="encoderContainer">
+        <label for="16_encode">input what you want to encoder here:</label>
+        <br>
+        <input type="text" name="encoder" id="16_encode" class="encoder">
+
+        <input type="button" value="Encode" class="encodeBtn">
+
+        <div class="outputContainer">
+          <p class="outputDisplay">736f6d657468696e6720492077616e6e612068696465</p>
+          <input type="button" value="Copy" class="copy">
+        </div>
+      </div>
+
+      <div class="decodercontainer">
+        <label for="16_decode" class="instruction">input what you want to decode here:</label>
+        <br>
+        <input type="text" name="decoder" id="16_decode" class="decoder">
+
+        <input type="button" value="Decode" class="decodeBtn">
+
+        <div class="outputContainer">
+          <p class="outputDisplay">something I wanna hide</p>
+          <input type="button" value="Copy" class="copy">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+
+</html>
