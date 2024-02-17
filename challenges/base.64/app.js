@@ -38,22 +38,46 @@ function decrypt(encryptedMessage, key) {
 function copyToClipboard(copyText) {
 
   //select the text
-  copyText.select();
-  copyText.setSelectionRange(0, 99999); //for mobile devices
+  // console.log(copyText);
+  // copyText.select();
+  // copyText.setSelectionRange(0, 99999); //for mobile devices
 
-  navigator.clipboard.writeText(copyText.value);
+  navigator.clipboard.writeText(copyText);
+  alert(`text copied: ${copyText}`);
 
 }
 
-const copyButtons = document.querySelectorAll('.copy');
+
 const encoder = document.querySelector('.encoderContainer');
-const decoder = document.querySelector('.decoderContainer');
 const encodedOutput = encoder.querySelector('.outputDisplay');
+const encodeInput = encoder.querySelector('#encode');
+const encodeBtn = encoder.querySelector('.encodeBtn');
+const copyEncoded = encoder.querySelector('.copy');
+
+const decoder = document.querySelector('.decoderContainer');
 const decodedOutput = decoder.querySelector('.outputDisplay');
+const decodeInput = decoder.querySelector('#decode');
+const decodeBtn = decoder.querySelector('.decodeBtn');
 
+const key = `I will think of something else later`;
+let encryptedMsg = ``;
 
-copyButtons.forEach((btn) => {
+// console.log(encodedOutput);
+// console.log(decodedOutput.value);
 
-  btn.addEventListener('click', () => { copyToClipboard(encodedOutput) });
+encodeBtn.addEventListener('click', () => {
+
+  let msg = encodeInput.value;
+  // console.log(msg);
+  // encryptedMsg = encrypt(msg, key);
+  encryptedMsg = toHex(msg);
+  // console.log(encryptedMsg);
+  encodedOutput.textContent = encryptedMsg;
+
+});
+
+copyEncoded.addEventListener('click', () => {
+
+  copyToClipboard(encryptedMsg);
 
 });

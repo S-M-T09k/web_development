@@ -13,7 +13,7 @@ body {
 }
 
 .container {
-  height: 25rem;
+  height: auto;
   width: 70vw;
   border: green solid 2px;
   padding: 3px;
