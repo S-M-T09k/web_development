@@ -62,6 +62,7 @@ filterBtn.addEventListener('click', () => {
     numbersList.appendChild(listItem);
 
   });
+  numbersToFilter = filteredList;
 
 });
 
