@@ -20,7 +20,6 @@ body {
   width: 1009px;
   height: 500px;
   border: 2px solid wheat;
-  padding: 1px;
   left: 20;
   position: absolute;
 }
@@ -41,4 +40,13 @@ body {
   background-color: blue;
   position: absolute;
   /* margin: 1px; */
+}
+
+.ball {
+  width: 10px;
+  height: 10px;
+  border: #0004ff solid 2px;
+  background-color: #61f0f5;
+  position: absolute;
+  border-radius: 100%;
 }
