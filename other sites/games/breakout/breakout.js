@@ -7,6 +7,8 @@ class Block {
     this.yPos = yPos * 21;
     this.color = color;
   }
+  width = 100;
+  height = 20;
 
   addToGrid() {
     const block = document.createElement('div');
@@ -15,6 +17,13 @@ class Block {
     block.style.top = this.yPos + "px";
     block.style.backgroundColor = this.color;
     grid.appendChild(block);
+
+    this.block = block;
+  }
+
+  draw() {
+    this.block.style.left = this.xPos + "px";
+    this.block.style.top = this.yPos + "px";
   }
 
 };
@@ -32,23 +41,35 @@ const rainbow = [
 const user = {
   xPos: 460,
   yPos: 10,
+  width: 90,
+  height: 5,
 
   addToGrid() {
-    const user = document.createElement('div');
-    user.classList.add("user");
-    user.style.left = this.xPos + "px";
-    user.style.bottom = this.yPos + "px";
-    user.style.backgroundColor = this.color;
-    grid.appendChild(user);
+    const paddle = document.createElement('div');
+    paddle.classList.add("user");
+    paddle.style.left = this.xPos + "px";
+    paddle.style.bottom = this.yPos + "px";
+    paddle.style.backgroundColor = this.color;
+    grid.appendChild(paddle);
+
+    this.paddle = paddle;
+  },
+
+  draw() {
+    this.paddle.style.left = this.xPos + "px";
+    this.paddle.style.bottom = this.yPos + "px";
   },
 
   currentPos: this.xPos,
-
 };
 
 const ball = {
   xPos: 498,
   yPos: 15,
+  width: 14,
+  height: 14,
+  xVelocity: 2,
+  yVelocity: 2,
 
   addToGrid() {
     const ball = document.createElement('div');
@@ -57,18 +78,25 @@ const ball = {
     ball.style.bottom = this.yPos + "px";
     ball.style.backgroundColor = this.color;
     grid.appendChild(ball);
+
+    this.ball = ball;
   },
 
-  currentPos: this.xPos,
+  draw() {
+    this.ball.style.left = this.xPos + "px";
+    this.ball.style.bottom = this.yPos + "px";
+  },
+
+  currentPos: [this.xPos, this.yPos],
 };
 
 
-let numberOfBlocks = 30;
+let numberOfBlocks = 40;
 let rows = 4;
 const columns = 10;
 
+//*create the ball, user and blocks and place them on the grid
 const blocks = [];
-
 for (let i = 0; i < numberOfBlocks; i++) {
 
   let randomColor = rainbow[Math.floor(Math.random() * 7)];
@@ -76,9 +104,9 @@ for (let i = 0; i < numberOfBlocks; i++) {
   let randomY = Math.floor(Math.random() * rows);
 
   // console.log(blocks.some(block => { block.xPos === randomX && block.yPos === randomY }));
+  ////also array.some() doesn't work with {brackets}
   //!divide because the assignment is multiplied
-  //!also array.some() doesn't work with {brackets}
-  while (blocks.some(block => block.xPos / 101 === randomX && block.yPos / 21 === randomY)) {
+  while (blocks.some((block) => { return block.xPos / 101 === randomX && block.yPos / 21 === randomY })) {
     randomX = Math.floor(Math.random() * columns);
     randomY = Math.floor(Math.random() * rows);
   };
@@ -91,6 +119,39 @@ for (let i = 0; i < numberOfBlocks; i++) {
 blocks.forEach(block => block.addToGrid());
 user.addToGrid();
 ball.addToGrid();
+
+//*The actual game
+const tick = setInterval(() => {
+  moveBall();
+  checkCollision();
+}, 10);
+
+function moveBall() {
+  ball.xPos += ball.xVelocity;
+  ball.yPos += ball.yVelocity;
+  ball.draw();
+}
+
+function checkCollision() {
+
+  const gridWidth = grid.clientWidth - ball.width;
+  const gridHeight = grid.clientHeight - ball.height;
+
+  for (const block of blocks) {
+    // console.log(block);
+    if (ball.xPos >= block.xPos) {
+      ball.xVelocity *= -1;
+    }
+
+  }
+
+  if (ball.xPos >= gridWidth || ball.xPos <= 0) {
+    ball.xVelocity *= -1;
+  };
+  if (ball.yPos >= gridHeight || ball.yPos <= 0) {
+    ball.yVelocity *= -1;
+  };
+}
 
 
 //// blocks.forEach((block) => { block.addToGrid(); });
