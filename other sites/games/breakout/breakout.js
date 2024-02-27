@@ -6,6 +6,10 @@ class Block {
     this.xPos = xPos * 101;
     this.yPos = yPos * 21;
     this.color = color;
+    this.topLeft = [xPos * 101, yPos * 21];
+    this.bottomLeft = [xPos * 101, yPos * 21 + this.height];
+    this.topRight = [xPos * 101 + this.width, yPos * 21];
+    this.bottomRight = [xPos * 101 + this.width, yPos * 21 + this.height];
   }
   width = 100;
   height = 20;
@@ -14,7 +18,7 @@ class Block {
     const block = document.createElement('div');
     block.classList.add("block");
     block.style.left = this.xPos + "px";
-    block.style.top = this.yPos + "px";
+    block.style.bottom = this.yPos + "px";
     block.style.backgroundColor = this.color;
     grid.appendChild(block);
 
@@ -23,7 +27,13 @@ class Block {
 
   draw() {
     this.block.style.left = this.xPos + "px";
-    this.block.style.top = this.yPos + "px";
+    this.block.style.bottom = this.yPos + "px";
+  }
+
+  remove() {
+    this.block.remove();
+    delete this;
+    console.log(blocks);
   }
 
 };
@@ -106,7 +116,7 @@ for (let i = 0; i < numberOfBlocks; i++) {
   // console.log(blocks.some(block => { block.xPos === randomX && block.yPos === randomY }));
   ////also array.some() doesn't work with {brackets}
   //!divide because the assignment is multiplied
-  while (blocks.some((block) => { return block.xPos / 101 === randomX && block.yPos / 21 === randomY })) {
+  while (blocks.some((block) => { return block.xPos / 101 === randomX && block.yPos / 21=== randomY })) {
     randomX = Math.floor(Math.random() * columns);
     randomY = Math.floor(Math.random() * rows);
   };
@@ -126,6 +136,8 @@ const tick = setInterval(() => {
   checkCollision();
 }, 10);
 
+// setTimeout(() => { clearInterval(tick) }, 1000)
+
 function moveBall() {
   ball.xPos += ball.xVelocity;
   ball.yPos += ball.yVelocity;
@@ -138,19 +150,45 @@ function checkCollision() {
   const gridHeight = grid.clientHeight - ball.height;
 
   for (const block of blocks) {
-    // console.log(block);
-    if (ball.xPos >= block.xPos) {
-      ball.xVelocity *= -1;
+    console.log(block);
+    if (
+      ball.xPos > block.bottomLeft[0] &&
+      ball.xPos < block.bottomRight[0] &&
+      (ball.yPos + ball.height) > block.bottomLeft[1] &&
+      ball.yPos < block.topLeft[1]
+    ) {
+      console.log("WHAT is going on this block");
+      ball.yVelocity *= -1;
+      block.remove();
     }
 
   }
 
-  if (ball.xPos >= gridWidth || ball.xPos <= 0) {
-    ball.xVelocity *= -1;
-  };
-  if (ball.yPos >= gridHeight || ball.yPos <= 0) {
-    ball.yVelocity *= -1;
-  };
+  switch (true) {
+    case ball.yPos <= 0:
+      clearInterval(tick);
+      break;
+    case ball.xPos >= gridWidth:
+    case ball.xPos <= 0:
+      ball.xVelocity *= -1;
+      break;
+    case ball.yPos >= gridHeight:
+      ball.yVelocity *= -1;
+      break;
+    // case ball.yPos <= user.yPos:
+    //   ball.yVelocity *= -1;
+
+    default:
+      break;
+  }
+
+  // function blockCollision() {
+  //   if (
+
+  //   ) {
+
+  //   }
+  // }
 }
 
 
