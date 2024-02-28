@@ -70,16 +70,29 @@ const user = {
     this.paddle.style.bottom = this.yPos + "px";
   },
 
-  currentPos: this.xPos,
+  getCurrentPosition() {
+    let bottomLeft = [this.xPos, this.yPos];
+    let bottomRight = [this.xPos + this.width, this.yPos];
+    let topLeft = [this.xPos, this.yPos + this.height];
+    let topRight = [this.xPos + this.width, this.yPos + this.height];
+
+    return {
+      bottomLeft: bottomLeft,
+      bottomRight: bottomRight,
+      topLeft: topLeft,
+      topRight: topRight,
+    };
+  },
 };
+// console.log(user.getCurrentPosition().bottomLeft[0]);
 
 const ball = {
   xPos: 498,
   yPos: 15,
   width: 14,
   height: 14,
-  xVelocity: 10,
-  yVelocity: 5,
+  xVelocity: 5,
+  yVelocity: 2,
 
   addToGrid() {
     const ball = document.createElement('div');
@@ -137,7 +150,7 @@ const tick = setInterval(() => {
   checkCollision();
   scoreDisplay.textContent = score.toString();
 }, 10);
-
+grid.addEventListener('mousemove', moveUser);
 // setTimeout(() => { clearInterval(tick) }, 1000)
 
 function moveBall() {
@@ -146,11 +159,26 @@ function moveBall() {
   ball.draw();
 }
 
+function moveUser(event) {
+  console.log(user.getCurrentPosition());
+  console.log(ball.xPos, ball.yPos);
+  user.xPos = event.layerX - user.width / 2;
+  if (user.xPos < 0) user.xPos = 0;
+  if (user.xPos > grid.clientWidth - user.width) user.xPos = grid.clientWidth - user.width;
+  user.draw();
+}
+
+function stopGame() {
+  clearInterval(tick);
+  grid.removeEventListener('mousemove', moveUser);
+};
+
 function checkCollision() {
 
   const gridWidth = grid.clientWidth - ball.width;
   const gridHeight = grid.clientHeight - ball.height;
 
+  //*for blocks
   for (const block of blocks) {
     // console.log(block);
     if (
@@ -168,36 +196,41 @@ function checkCollision() {
       ball.yVelocity *= -1;
       block.remove();
       score++;
-      console.log(blocks);
+      // console.log(blocks);
     };
 
   };
 
   switch (true) {
     case ball.yPos <= 0:
-      clearInterval(tick);
+      stopGame();
+      break;
+    case ball.yPos >= gridHeight:
+      ball.yVelocity *= -1;
       break;
     case ball.xPos >= gridWidth:
     case ball.xPos <= 0:
       ball.xVelocity *= -1;
       break;
-    case ball.yPos >= gridHeight:
-      ball.yVelocity *= -1;
-      break;
-    case ball.yPos <= user.yPos:
-      ball.yVelocity *= -1;
 
     default:
       break;
+  };
+
+  if (
+    ball.xPos > user.getCurrentPosition().bottomLeft[0] &&
+    ball.xPos < user.getCurrentPosition().bottomRight[0] &&
+    (ball.yPos + ball.width) > user.getCurrentPosition().bottomLeft[1] &&
+    ball.yPos < user.getCurrentPosition().topLeft[1]
+  ) {
+    ball.yVelocity *= -1;
+    if (ball.xVelocity >= 1) {
+      ball.xVelocity -= Math.ceil(Math.random() * ball.xVelocity - 1);
+    }
+    else if (ball.xVelocity <= -1) {
+      ball.xVelocity += Math.ceil(Math.random() * ball.xVelocity - 1);
+    };
   }
-
-  // function blockCollision() {
-  //   if (
-
-  //   ) {
-
-  //   }
-  // }
 }
 
 
