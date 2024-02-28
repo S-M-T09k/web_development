@@ -1,5 +1,6 @@
 body {
   background-color: #222222;
+  color: #d0c0fd;
 }
 
 .centerGrid {
@@ -18,7 +19,7 @@ body {
 
 .grid {
   width: 1009px;
-  height: 500px;
+  height: 503px;
   border: 2px solid wheat;
   left: 20;
   position: absolute;
@@ -49,4 +50,11 @@ body {
   background-color: #61f0f5;
   position: absolute;
   border-radius: 100%;
+}
+
+.score {
+  position: unset;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 5vh;
+  margin: 3px;
 }

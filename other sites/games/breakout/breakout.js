@@ -1,15 +1,16 @@
 const grid = document.querySelector('.grid');
+const scoreDisplay = document.querySelector('.score span');
 
 class Block {
 
   constructor(xPos, yPos, color,) {
     this.xPos = xPos * 101;
-    this.yPos = yPos * 21;
+    this.yPos = (yPos + 24 - rows) * 21;
     this.color = color;
-    this.topLeft = [xPos * 101, yPos * 21];
-    this.bottomLeft = [xPos * 101, yPos * 21 + this.height];
-    this.topRight = [xPos * 101 + this.width, yPos * 21];
-    this.bottomRight = [xPos * 101 + this.width, yPos * 21 + this.height];
+    this.topLeft = [xPos * 101, ((yPos + 24 - rows) * 21) + this.height];
+    this.bottomLeft = [xPos * 101, (yPos + 24 - rows) * 21];
+    this.topRight = [xPos * 101 + this.width, ((yPos + 24 - rows) * 21) + this.height];
+    this.bottomRight = [xPos * 101 + this.width, (yPos + 24 - rows) * 21];
   }
   width = 100;
   height = 20;
@@ -33,7 +34,6 @@ class Block {
   remove() {
     this.block.remove();
     delete this;
-    console.log(blocks);
   }
 
 };
@@ -78,8 +78,8 @@ const ball = {
   yPos: 15,
   width: 14,
   height: 14,
-  xVelocity: 2,
-  yVelocity: 2,
+  xVelocity: 10,
+  yVelocity: 5,
 
   addToGrid() {
     const ball = document.createElement('div');
@@ -101,8 +101,9 @@ const ball = {
 };
 
 
-let numberOfBlocks = 40;
-let rows = 4;
+let numberOfBlocks = 50;
+let rows = 6;
+let score = 0;
 const columns = 10;
 
 //*create the ball, user and blocks and place them on the grid
@@ -116,7 +117,7 @@ for (let i = 0; i < numberOfBlocks; i++) {
   // console.log(blocks.some(block => { block.xPos === randomX && block.yPos === randomY }));
   ////also array.some() doesn't work with {brackets}
   //!divide because the assignment is multiplied
-  while (blocks.some((block) => { return block.xPos / 101 === randomX && block.yPos / 21=== randomY })) {
+  while (blocks.some((block) => { return block.xPos / 101 === randomX && block.yPos === (randomY + 24 - rows) * 21 })) {
     randomX = Math.floor(Math.random() * columns);
     randomY = Math.floor(Math.random() * rows);
   };
@@ -134,6 +135,7 @@ ball.addToGrid();
 const tick = setInterval(() => {
   moveBall();
   checkCollision();
+  scoreDisplay.textContent = score.toString();
 }, 10);
 
 // setTimeout(() => { clearInterval(tick) }, 1000)
@@ -150,19 +152,26 @@ function checkCollision() {
   const gridHeight = grid.clientHeight - ball.height;
 
   for (const block of blocks) {
-    console.log(block);
+    // console.log(block);
     if (
       ball.xPos > block.bottomLeft[0] &&
       ball.xPos < block.bottomRight[0] &&
       (ball.yPos + ball.height) > block.bottomLeft[1] &&
       ball.yPos < block.topLeft[1]
     ) {
-      console.log("WHAT is going on this block");
+      console.log("a block should have got deleted");
+      const index = blocks.indexOf(block);
+      if (index <= -1) {
+        return;
+      };
+      blocks.splice(index, 1);
       ball.yVelocity *= -1;
       block.remove();
-    }
+      score++;
+      console.log(blocks);
+    };
 
-  }
+  };
 
   switch (true) {
     case ball.yPos <= 0:
@@ -175,8 +184,8 @@ function checkCollision() {
     case ball.yPos >= gridHeight:
       ball.yVelocity *= -1;
       break;
-    // case ball.yPos <= user.yPos:
-    //   ball.yVelocity *= -1;
+    case ball.yPos <= user.yPos:
+      ball.yVelocity *= -1;
 
     default:
       break;

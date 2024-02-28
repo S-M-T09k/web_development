@@ -1,7 +1,7 @@
 const showImgButton = document.querySelector('#showImg');
 const hideImgButton = document.querySelector('#hideImg');
 const showOrHide = document.querySelector('#showAndHide');
-const image = document.querySelector('#gruMeme');
+const image = document.querySelector('#meme');
 
 const imageStyle = window.getComputedStyle(image);
 const hideBtnStyle = window.getComputedStyle(hideImgButton);
