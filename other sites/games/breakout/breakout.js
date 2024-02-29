@@ -1,5 +1,8 @@
 const grid = document.querySelector('.grid');
-const scoreDisplay = document.querySelector('.score span');
+const gameConditionDisplay = document.querySelector('.score');
+const startButton = document.querySelector('.startGame');
+const resetButton = document.querySelector('.reset');
+const mouseMoveArea = document.querySelector('.mouseMoveArea');
 
 class Block {
 
@@ -50,7 +53,7 @@ const rainbow = [
 
 const user = {
   xPos: 460,
-  yPos: 10,
+  yPos: 20,
   width: 90,
   height: 5,
 
@@ -83,12 +86,14 @@ const user = {
       topRight: topRight,
     };
   },
+
+  initialPosition: [460, 15],
 };
-// console.log(user.getCurrentPosition().bottomLeft[0]);
+// console.log(user);
 
 const ball = {
   xPos: 498,
-  yPos: 15,
+  yPos: user.yPos + 5,
   width: 14,
   height: 14,
   xVelocity: 5,
@@ -110,48 +115,58 @@ const ball = {
     this.ball.style.bottom = this.yPos + "px";
   },
 
-  currentPos: [this.xPos, this.yPos],
+  initialPos: [498, user.yPos + 5],
 };
+// console.log(ball);
 
 
-let numberOfBlocks = 50;
-let rows = 6;
+let numberOfBlocks = 15;
+let rows = 2;
 let score = 0;
 const columns = 10;
+let timer;
 
 //*create the ball, user and blocks and place them on the grid
-const blocks = [];
-for (let i = 0; i < numberOfBlocks; i++) {
-
-  let randomColor = rainbow[Math.floor(Math.random() * 7)];
-  let randomX = Math.floor(Math.random() * columns);
-  let randomY = Math.floor(Math.random() * rows);
-
-  // console.log(blocks.some(block => { block.xPos === randomX && block.yPos === randomY }));
-  ////also array.some() doesn't work with {brackets}
-  //!divide because the assignment is multiplied
-  while (blocks.some((block) => { return block.xPos / 101 === randomX && block.yPos === (randomY + 24 - rows) * 21 })) {
-    randomX = Math.floor(Math.random() * columns);
-    randomY = Math.floor(Math.random() * rows);
-  };
-
-  const block = new Block(randomX, randomY, randomColor);
-  blocks.push(block);
-
-};
-
-blocks.forEach(block => block.addToGrid());
+let blocks = [];
 user.addToGrid();
 ball.addToGrid();
+createAndAddBlocksToGrid();
 
 //*The actual game
-const tick = setInterval(() => {
+startButton.addEventListener('click', startGame);
+resetButton.addEventListener('click', resetGame);
+
+const tick = () => {
   moveBall();
+  gameConditionDisplay.textContent = "Score: " + score;
   checkCollision();
-  scoreDisplay.textContent = score.toString();
-}, 10);
-grid.addEventListener('mousemove', moveUser);
+  checkWin();
+}
 // setTimeout(() => { clearInterval(tick) }, 1000)
+
+function createAndAddBlocksToGrid() {
+  for (let i = 0; i < numberOfBlocks; i++) {
+
+    let randomColor = rainbow[Math.floor(Math.random() * 7)];
+    let randomX = Math.floor(Math.random() * columns);
+    let randomY = Math.floor(Math.random() * rows);
+
+    // console.log(blocks.some(block => { block.xPos === randomX && block.yPos === randomY }));
+    ////also array.some() doesn't work with {brackets}
+    //!divide because the assignment is multiplied
+    while (blocks.some((block) => { return block.xPos / 101 === randomX && block.yPos === (randomY + 24 - rows) * 21 })) {
+      randomX = Math.floor(Math.random() * columns);
+      randomY = Math.floor(Math.random() * rows);
+    };
+
+    const block = new Block(randomX, randomY, randomColor);
+    blocks.push(block);
+
+  };
+
+  blocks.forEach(block => block.addToGrid());
+
+}
 
 function moveBall() {
   ball.xPos += ball.xVelocity;
@@ -160,18 +175,14 @@ function moveBall() {
 }
 
 function moveUser(event) {
-  console.log(user.getCurrentPosition());
-  console.log(ball.xPos, ball.yPos);
+  // console.log(event);
+  // console.log(user.getCurrentPosition());
+  // console.log(ball.xPos, ball.yPos);
   user.xPos = event.layerX - user.width / 2;
   if (user.xPos < 0) user.xPos = 0;
   if (user.xPos > grid.clientWidth - user.width) user.xPos = grid.clientWidth - user.width;
   user.draw();
 }
-
-function stopGame() {
-  clearInterval(tick);
-  grid.removeEventListener('mousemove', moveUser);
-};
 
 function checkCollision() {
 
@@ -187,7 +198,7 @@ function checkCollision() {
       (ball.yPos + ball.height) > block.bottomLeft[1] &&
       ball.yPos < block.topLeft[1]
     ) {
-      console.log("a block should have got deleted");
+      // console.log("a block should have got deleted");
       const index = blocks.indexOf(block);
       if (index <= -1) {
         return;
@@ -204,6 +215,7 @@ function checkCollision() {
   switch (true) {
     case ball.yPos <= 0:
       stopGame();
+      gameConditionDisplay.textContent = "You Lose";
       break;
     case ball.yPos >= gridHeight:
       ball.yVelocity *= -1;
@@ -223,6 +235,7 @@ function checkCollision() {
     (ball.yPos + ball.width) > user.getCurrentPosition().bottomLeft[1] &&
     ball.yPos < user.getCurrentPosition().topLeft[1]
   ) {
+
     ball.yVelocity *= -1;
     if (ball.xVelocity >= 1) {
       ball.xVelocity -= Math.ceil(Math.random() * ball.xVelocity - 1);
@@ -230,7 +243,48 @@ function checkCollision() {
     else if (ball.xVelocity <= -1) {
       ball.xVelocity += Math.ceil(Math.random() * ball.xVelocity - 1);
     };
+    ball.xVelocity *= Math.random() > 0.5 ? -1 : 1;
+
+  };
+}
+
+function checkWin() {
+  if (blocks.length === 0) {
+    setTimeout(() => {
+      stopGame();
+      gameConditionDisplay.textContent = "You Win!";
+    }, 500);
+
+    numberOfBlocks += 10;
+    rows += 1;
+    ball.yVelocity += 1;
   }
+}
+
+function stopGame() {
+  clearInterval(timer);
+  mouseMoveArea.removeEventListener('mousemove', moveUser);
+}
+
+function startGame() {
+  timer = setInterval(tick, 10);
+  mouseMoveArea.addEventListener('mousemove', moveUser);
+  startButton.removeEventListener('click', startGame);
+  gameConditionDisplay.textContent = "Score: " + score;
+}
+
+function resetGame() {
+  startButton.addEventListener('click', startGame);
+  gameConditionDisplay.textContent = "Unbegun";
+  score = 0;
+  ball.xPos = ball.initialPos[0];
+  ball.yPos = ball.initialPos[1];
+  ball.draw();
+  user.xPos = user.initialPosition[0];
+  user.yPos = user.initialPosition[1];
+  user.draw();
+  blocks = [];
+  createAndAddBlocksToGrid();
 }
 
 
