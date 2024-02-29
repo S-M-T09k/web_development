@@ -142,7 +142,6 @@ const tick = () => {
   checkCollision();
   checkWin();
 }
-// setTimeout(() => { clearInterval(tick) }, 1000)
 
 function createAndAddBlocksToGrid() {
   for (let i = 0; i < numberOfBlocks; i++) {
@@ -250,13 +249,11 @@ function checkCollision() {
 
 function checkWin() {
   if (blocks.length === 0) {
-    setTimeout(() => {
-      stopGame();
-      gameConditionDisplay.textContent = "You Win!";
-    }, 500);
-
-    numberOfBlocks += 10;
+    stopGame();
+    gameConditionDisplay.textContent = "You Win!";
+    numberOfBlocks += Math.floor(Math.random() * 15);
     rows += 1;
+    ball.yVelocity *= ball.yVelocity > 0 ? 1 : -1;
     ball.yVelocity += 1;
   }
 }
@@ -277,13 +274,15 @@ function resetGame() {
   startButton.addEventListener('click', startGame);
   gameConditionDisplay.textContent = "Unbegun";
   score = 0;
+  blocks.forEach(block => block.remove());
+  blocks = [];
   ball.xPos = ball.initialPos[0];
   ball.yPos = ball.initialPos[1];
   ball.draw();
+  ball.yVelocity *= ball.yVelocity > 0 ? 1 : -1;
   user.xPos = user.initialPosition[0];
   user.yPos = user.initialPosition[1];
   user.draw();
-  blocks = [];
   createAndAddBlocksToGrid();
 }
 
