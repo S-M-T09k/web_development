@@ -1,0 +1,43 @@
+@font-face {
+  font-family: 'Pokemon';
+  src: local('./pokemon-pixel-font-regular.ttf'),
+    url('https://www.fontsaddict.com/fontface/pokemon-pixel-font-regular.ttf');
+}
+
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #1f1b1f;
+  color: antiquewhite;
+  font-family: 'Pokemon Pixel Font', Arial, Helvetica, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  width: auto;
+  height: auto;
+}
+
+.gridCenter {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(auto-fit, minmax(100px, auto));
+  justify-items: center;
+  align-items: center;
+}
+
+.flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-size: 3em;
+  text-align: center;
+  font-weight: 600;
+}

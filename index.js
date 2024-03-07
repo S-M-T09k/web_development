@@ -1,5 +1,11 @@
 let idFetch = document.getElementById.bind(document);
 
+document.addEventListener('DOMContentLoaded', () => {
+  if (sessionStorage.getItem('rickRolled') === 'true') {
+    rickRoll.textContent = "I'm sorry";
+  }
+})
+
 let username;
 
 idFetch("submitButton").onclick = function () {
@@ -89,3 +95,6 @@ idFetch("addFri").onclick = function () {
     indexOfFriends++;
   }
 };
+
+const rickRoll = document.querySelector('#rickRoll a');
+rickRoll.addEventListener('click', () => sessionStorage.setItem('rickRolled', 'true'));
