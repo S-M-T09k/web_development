@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokemon-Info</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="shortcut icon" href="./pngwing.com.png" type="image/x-icon">
+</head>
+
+<body>
+
+  <h1>Pokemon Info</h1>
+
+  <div class="gridCenter">
+    <div class="form">
+
+      <div class="searchTerm">
+        <label for="searchType">How would you like to search the Pokemon:</label>
+        <select name="searchType" id="searchType" title="search type">
+          <option value="name">Name</option>
+          <option value="pokedexNumber">Pokedex Number</option>
+        </select>
+      </div>
+
+      <br>
+
+      <div class="searchBox">
+        <label for="searchBox">Search:</label>
+        <input type="text" id="searchBox" placeholder="Enter Pokemon Name">
+        <button type="button" id="searchButton">Search</button>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="outputInfo">
+    <ul class="pokemonInfo">
+
+    </ul>
+  </div>
+
+  <script type="module" src="./app.js"></script>
+</body>
+
+</html>
