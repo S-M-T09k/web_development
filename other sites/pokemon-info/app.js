@@ -3,6 +3,7 @@ const searchTypeInput = form.querySelector('#searchType');
 const searchBox = form.querySelector('#searchBox');
 const searchButton = form.querySelector('#searchButton');
 const outputDisplay = document.querySelector('.pokemonInfo');
+const loadingDisplay = document.querySelector('#loader');
 
 async function getPokemon(searchOption) {
 
@@ -51,9 +52,9 @@ async function getPokemon(searchOption) {
 const main = async () => {
 
   search = searchBox.value;
+  outputDisplay.textContent = '';
   const pokemon = await getPokemon(search);
   console.log(pokemon);
-  outputDisplay.textContent = '';
 
   image();
   name();
@@ -156,9 +157,14 @@ searchTypeInput.addEventListener('input', () => {
 });
 
 let search;
-searchButton.addEventListener('click', main);
+searchButton.addEventListener('click', () => {
+  loadingDisplay.classList.add('loader');
+  main().then(() => loadingDisplay.classList.remove('loader'));
+});
+
 searchBox.addEventListener('keydown', (e) => {
   if (e.keyCode === 13) {
-    main();
+    loadingDisplay.classList.add('loader');
+    main().then(() => loadingDisplay.classList.remove('loader'));
   };
 });
