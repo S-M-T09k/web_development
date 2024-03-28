@@ -4,9 +4,11 @@ const fs = require('fs');
 const path = require('path');
 const port = 5052;
 
+app.use(express.static(path.join(__dirname, '../')));
+
 app.get('/', (req, res) => {
   
-  res.send('hello world');
+  res.sendFile(path.join(__dirname, '../index.html'));
 
 })
 

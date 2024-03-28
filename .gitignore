@@ -185,3 +185,4 @@ dist
 .pnp.*
 
 test/
+no/
